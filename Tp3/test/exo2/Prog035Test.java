@@ -1,6 +1,5 @@
 package exo2;
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 public class Prog035Test {
@@ -18,7 +17,7 @@ public class Prog035Test {
 		double exam = 12;
 		Prog035 note = new Prog035(session1,session2,exam);
 		double current = note.calculeNote();
-		assertEquals(12, current, 1e-5);	
+		Assert.assertEquals(12, current, 1e-5);	
 	}
 	
 }

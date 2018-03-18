@@ -1,6 +1,5 @@
 package exo2;
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 public class Prog032Test {
@@ -20,7 +19,7 @@ public class Prog032Test {
 		double session2 = 0;
 		Prog032 note = new Prog032(session1, session2);
 		double current = note.calculeNote();
-		assertEquals(10, current, 1e-5);	
+		Assert.assertEquals(10, current, 1e-5);	
 	}
 	
 	@Test
@@ -29,7 +28,7 @@ public class Prog032Test {
 		double session2 = 7;
 		Prog032 note = new Prog032(session1, session2);
 		double current = note.calculeNote();
-		assertEquals(7, current, 1e-5);	
+		Assert.assertEquals(7, current, 1e-5);	
 	}
 	
 	@Test
@@ -38,7 +37,7 @@ public class Prog032Test {
 		double session2 = 20;
 		Prog032 note = new Prog032(session1, session2);
 		double current = note.calculeNote();
-		assertEquals(10, current, 1e-5);	
+		Assert.assertEquals(10, current, 1e-5);	
 	}
 	
 }
