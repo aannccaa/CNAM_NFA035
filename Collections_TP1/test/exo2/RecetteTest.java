@@ -1,14 +1,21 @@
 package exo2;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class RecetteTest {
 
+	Recette tartePommes;
+
+	@Before
+	public void init() {
+		tartePommes = new Recette("Tarte aux pommes");
+	}
+
 	@Test
 	public void getMoyenneNotes() {
 		int[] notes = { 1, 3, 2 };
-		Recette tartePommes = new Recette("Tarte aux pommes");
 		for (int note : notes) {
 			tartePommes.addNote(note);
 		}
@@ -18,7 +25,6 @@ public class RecetteTest {
 
 	@Test
 	public void addNote() {
-		Recette tartePommes = new Recette("Tarte aux pommes");
 		int[] notes = tartePommes.getNotes();
 		Assert.assertEquals(notes.length, 0);
 		tartePommes.addNote(5);
@@ -29,14 +35,28 @@ public class RecetteTest {
 
 	@Test(expected = RecetteException.class)
 	public void addNoteSup5() {
-		Recette tartePommes = new Recette("Tarte aux pommes");
 		tartePommes.addNote(10);
 	}
 
 	@Test(expected = RecetteException.class)
 	public void addNoteInf1() {
-		Recette tartePommes = new Recette("Tarte aux pommes");
 		tartePommes.addNote(0);
+	}
+
+	@Test
+	public void toStringTest() {
+		String tartePommesString = "Tarte aux pommes";
+		String actual = tartePommes.toString();
+		Assert.assertEquals(tartePommesString, actual);
+
+		tartePommes.addNote(1);
+		actual = tartePommes.toString();
+		Assert.assertEquals(String.format("%s (%.1f)", tartePommesString, 1.0), actual);
+
+		tartePommes.addNote(2);
+		tartePommes.addNote(2);
+		actual = tartePommes.toString();
+		Assert.assertEquals(String.format("%s (%.1f)", tartePommesString, 5.0 / 3), actual);
 	}
 
 }
