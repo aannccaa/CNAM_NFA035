@@ -1,4 +1,5 @@
 package exo2;
+
 /*
 Exercice 2: livre de recettes (partie 1)
 Dans cet exercice nous allons demarrer la programmation d’une application simplifiee 
@@ -40,11 +41,28 @@ selon les deux ordres implementées.
  */
 public class Main {
 
-	
-	
-	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		LivreRecettes livre;
+		Recette glaceVanille;
+		Recette brownie;
+		Recette tarteCitron;
+
+		livre = new LivreRecettes("Desserts inoubliables");
+		glaceVanille = new Recette("Glace à la vanille");
+		brownie = new Recette("Brownie");
+		tarteCitron = new Recette("Tarte au citron");
+		livre.addRecette(glaceVanille);
+		livre.addRecette(brownie);
+		livre.addRecette(tarteCitron);
+		glaceVanille.addNote(5);
+		glaceVanille.addNote(2);
+		brownie.addNote(2);
+
+		OrdreRecettes ordreParNom = OrdreRecettes.PAR_NOM;
+		livre.afficherLivreTrie(ordreParNom);
+		
+		OrdreRecettes ordreParNotes = OrdreRecettes.PAR_NOTES;
+		livre.afficherLivreTrie(ordreParNotes);
 
 	}
 

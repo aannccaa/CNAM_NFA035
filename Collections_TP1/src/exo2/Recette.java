@@ -42,7 +42,6 @@ public class Recette implements Comparable<Recette> {
 	}
 
 	public String toString() {
-
 		String formatStr = this.notes.size() > 0 ? "%s (%.1f)" : "%s";
 		return String.format(formatStr, this.getNom(), this.getMoyenneNotes());
 	}

@@ -68,13 +68,26 @@ public class LivreRecettes {
 	public void sortByNoteDesc() {
 		this.recettes.sort(new ComparatorRecettesByNote());
 	}
-	
+
 	public void sortByNomEtNote() {
 		Collections.sort(this.recettes);
 	}
 
 	public ArrayList<Recette> getRecettes() {
 		return new ArrayList<Recette>(this.recettes);
+	}
+
+	public void afficherLivreTrie(OrdreRecettes ordre) {
+		System.out.println("=============>");
+		if (ordre == OrdreRecettes.PAR_NOTES) {
+			this.sortByNoteDesc();
+		} else if (ordre == OrdreRecettes.PAR_NOM) {
+			this.sortByNomEtNote();
+		} else {
+			throw new RecetteException("Pas de bonne valeur donnée pour l'ordre");
+		}
+		System.out.println(this.toString());
+		System.out.println("<=============");
 	}
 
 }
