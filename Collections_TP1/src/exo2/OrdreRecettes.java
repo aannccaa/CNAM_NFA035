@@ -1,6 +1,5 @@
 package exo2;
 
 public enum OrdreRecettes {
-	PAR_NOTES, PAR_NOM;
-
+	NON_TRIE, PAR_NOTES, PAR_NOM;
 }

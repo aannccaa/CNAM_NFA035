@@ -6,10 +6,12 @@ import java.util.Collections;
 public class LivreRecettes {
 	private String nom;
 	private ArrayList<Recette> recettes;
+	private OrdreRecettes ordreRecettes;
 
 	public LivreRecettes(String nom) {
 		this.nom = nom;
 		this.recettes = new ArrayList<Recette>();
+		this.ordreRecettes = OrdreRecettes.NON_TRIE;
 	}
 
 	public String getNom() {
@@ -26,6 +28,7 @@ public class LivreRecettes {
 			throw new RecetteException("La recette existe déjà");
 		}
 		this.recettes.add(r);
+		this.ordreRecettes = OrdreRecettes.NON_TRIE;
 	}
 
 	public Recette findById(int id) {
@@ -65,11 +68,30 @@ public class LivreRecettes {
 		return result;
 	}
 
+	public void sort(OrdreRecettes ordre) {
+		// si déjà trié on ne fait rien
+		if (ordre == this.ordreRecettes) {
+			return;
+		}
+		switch (ordre) {
+		case PAR_NOTES:
+			this.sortByNoteDesc();
+			return;
+		case PAR_NOM:
+			this.sortByNomEtNote();
+			return;
+		default:
+			return;
+		}
+	}
+
 	public void sortByNoteDesc() {
+		this.ordreRecettes = OrdreRecettes.PAR_NOTES;
 		this.recettes.sort(new ComparatorRecettesByNote());
 	}
 
 	public void sortByNomEtNote() {
+		this.ordreRecettes = OrdreRecettes.PAR_NOM;
 		Collections.sort(this.recettes);
 	}
 
@@ -79,13 +101,7 @@ public class LivreRecettes {
 
 	public void afficherLivreTrie(OrdreRecettes ordre) {
 		System.out.println("=============>");
-		if (ordre == OrdreRecettes.PAR_NOTES) {
-			this.sortByNoteDesc();
-		} else if (ordre == OrdreRecettes.PAR_NOM) {
-			this.sortByNomEtNote();
-		} else {
-			throw new RecetteException("Pas de bonne valeur donnée pour l'ordre");
-		}
+		sort(ordre);
 		System.out.println(this.toString());
 		System.out.println("<=============");
 	}
