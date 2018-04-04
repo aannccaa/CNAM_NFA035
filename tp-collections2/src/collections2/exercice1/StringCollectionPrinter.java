@@ -1,4 +1,4 @@
-package exo1;
+package collections2.exercice1;
 
 /*
 Exercice 1: for each et itérateurs 
