@@ -1,12 +1,13 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 // import java.util.Map.Entry;
 
 public class Banque {
-	@Override
-	public String toString() {
-		return "Banque [nom=" + nom + ", tous=" + tous + "]";
-	}
 
 	private String nom; // nom de la banque private
 	int dernierNumero = 0; // Dernier numero compte
@@ -114,23 +115,62 @@ public class Banque {
 	/* Bilan (solde total) des comptes de la banque */
 	public double getSoldeTous() {
 		double solde = 0;
-		for (Compte c : this.tous.values()) {
+		Collection<Compte> comptes = this.tous.values();
+		for (Compte c : comptes) {
 			solde = solde + c.getSolde();
 		}
-//		for(Entry<Integer, Compte> entry : this.tous.entrySet()) {
-//			Compte c = entry.getValue();
-//			Integer numero = entry.getKey();
-//    		solde = solde + c.getSolde();
-//		}
-		
-//		for(Integer numero : this.tous.keySet()) {
-//			Compte c = this.tous.get(numero);
-//    		solde = solde + c.getSolde();
-//		}
+		// Collection<Compte> comptes = this.tous.values();
+		// for(Entry<Integer, Compte> entry : this.tous.entrySet()) {
+		// Compte c = entry.getValue();
+		// Integer numero = entry.getKey();
+		// solde = solde + c.getSolde();
+		// }
+
+		// for(Integer numero : this.tous.keySet()) {
+		// Compte c = this.tous.get(numero);
+		// solde = solde + c.getSolde();
+		// }
 		return solde;
+	}
+
+	public double bilan() {
+		double res = 0;
+		Set<Map.Entry<Integer, Compte>> s = this.tous.entrySet();
+		for (Map.Entry<Integer, Compte> asso : s) {
+			res = res + asso.getValue().getSolde();
+		}
+		return res;
+	}
+	
+	public void suprimerComptesSoldeNull() {
+		Set<Map.Entry<Integer, Compte>> s = tous.entrySet();
+		Iterator<Map.Entry<Integer, Compte>> its = s.iterator();
+		while(its.hasNext()) {
+			if (its.next().getValue().getSolde() == 0) {
+				its.remove();
+			}
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Banque [nom=" + nom + ", tous=" + tous + "]";
 	}
 
 	public void afficher() {
 		System.out.println(this.toString());
 	}
+
+	public void afficheParSolde() {
+		// copie de values() dans une liste
+		ArrayList<Compte> comptes = new ArrayList<Compte>(this.tous.values());
+		// on les trie
+		Collections.sort(comptes, new ordreParSolde());
+		// et on les affiche
+
+		for (Compte c : comptes) {
+			c.afficher();
+		}
+	}
+
 }

@@ -2,12 +2,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 class Compte {
-	@Override
-	public String toString() {
-		return "Compte [banque=" + banque.getNom() + ", numero=" + numero + ", titulaires=" + titulaires + ", solde=" + solde
-				+ "]";
-	}
-
 	final Banque banque;
 	final int numero;
 	final Set<Titulaire> titulaires;
@@ -35,6 +29,17 @@ class Compte {
 
 	void retrait(double m) {
 		this.solde = this.solde - m;
+	}
+
+	@Override
+	public String toString() {
+		return "Compte [banque=" + banque.getNom() + ", numero=" + numero + ", titulaires=" + titulaires + ", solde="
+				+ solde + "]";
+	}
+
+	public void afficher() {
+		System.out.println(this.toString());
+
 	}
 
 }
