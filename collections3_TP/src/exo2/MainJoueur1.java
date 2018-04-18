@@ -8,8 +8,8 @@ Question 4 : MainJoueur1
 Ecrivez une classe MainJoueur1 afin de repre ́senter la main d’un joueur, contenant 
 plusieurs cartes. Utilisez un HashSet pour stocker les cartes dans la main. 
 Dans un premier temps on souhaite doter cette classe des me ́thodes suivantes:
-• addCarte(Carte): ajoute une carte a` la main.
-• addCarte(Carte): teste si la main contient une carte.
+• add(Carte): ajoute une carte a` la main.
+• add(Carte): teste si la main contient une carte.
 • toString(): renvoie une repre ́sentation de la main sous forme de chaˆıne. 
 Ve ́rifiez le bon fonctionnement de votre classe avec un petit programme qui 
 l’utilise.
@@ -43,22 +43,21 @@ public class MainJoueur1 implements Iterable<Carte> {
 		cartes = new HashSet<>();
 	}
 
-	public void addCarte(Carte carte) {
+	public void add(Carte carte) {
 		this.cartes.add(carte);
 	}
 
-	public boolean contientCarte(Carte carte) {
+	public boolean contient(Carte carte) {
 		return this.cartes.contains(carte);
 	}
 
 	public String toString() {
-		String s = "";
-		String sep = ";";
-		for (Carte c : cartes) {
-			s = sep + s + c.toString();
-			sep = ";";
+		StringBuffer buffer = new StringBuffer();
+		for (Carte c: cartes) {
+			buffer.append(c);
+			buffer.append("\n");
 		}
-		return s;
+		return buffer.toString();
 	}
 
 	@Override
@@ -87,11 +86,11 @@ public class MainJoueur1 implements Iterable<Carte> {
 
 		// Q5
 		MainJoueur1 m = new MainJoueur1();
-		m.addCarte(new Carte(10, Couleur.CARREAU));
-		m.addCarte(new Carte(1, Couleur.COEUR));
-		m.addCarte(new Carte(10, Couleur.TREFLE));
+		m.add(new Carte(10, Couleur.CARREAU));
+		m.add(new Carte(1, Couleur.COEUR));
+		m.add(new Carte(10, Couleur.TREFLE));
 		
-		if (m.contientCarte(new Carte(10, Couleur.CARREAU))) {
+		if (m.contient(new Carte(10, Couleur.CARREAU))) {
 			System.out.println("Le jeu contient le 10 de carreau");
 		} else {
 			System.out.println("Le jeu ne contient pas le 10 de carreau");

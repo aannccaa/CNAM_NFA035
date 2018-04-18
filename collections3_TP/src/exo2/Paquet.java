@@ -20,29 +20,29 @@ public class Paquet {
 	public Paquet() {
 		cartes = new ArrayList<Carte>();
 		for (Couleur couleur : Couleur.values()) {
-			for (int i = 0; i < 12; i++) {
+			for (int i = 1; i <= 13; i++) {
 				cartes.add(new Carte(i, couleur));
 			}
 		}
 		// on mélange les cartes dans le paquet
 		Collections.shuffle(cartes);
 	}
-
-	public MainJoueur1 creerMainDeJoueur1() {
-		MainJoueur1 main = new MainJoueur1();
-		int indexDerniereCarte = cartes.size() - 1;
-		Carte derniereCarte = cartes.get(indexDerniereCarte);
+	
+	public MainJoueur1 creerMain1() {
+		MainJoueur1 m = new MainJoueur1();
+		
 		// on prend 5 cartes du paquet
 		for (int i = 0; i < 5; i++) {
 			// on ajoute dans la main la dernière carte du paquet
-			main.addCarte(derniereCarte);
+			int indexDerniereCarte = cartes.size() - 1;
+			Carte derniereCarte = cartes.get(indexDerniereCarte);
+			m.add(derniereCarte);
 			// et on l'enlève du paquet
 			cartes.remove(derniereCarte);
 		}
-		return main;
+		return m;
 	}
 
-	
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
@@ -51,5 +51,9 @@ public class Paquet {
 			buffer.append("\n");
 		}
 		return buffer.toString();
+	}
+
+	public int size() {
+		return cartes.size();
 	}
 }
