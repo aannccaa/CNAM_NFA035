@@ -18,14 +18,14 @@ public class Paquet {
 	private ArrayList<Carte> cartes;
 
 	public Paquet() {
-		cartes = new ArrayList<Carte>();
+		this.cartes = new ArrayList<Carte>();
 		for (Couleur couleur : Couleur.values()) {
 			for (int i = 1; i <= 13; i++) {
-				cartes.add(new Carte(i, couleur));
+				this.cartes.add(new Carte(i, couleur));
 			}
 		}
 		// on mélange les cartes dans le paquet
-		Collections.shuffle(cartes);
+		Collections.shuffle(this.cartes);
 	}
 	
 	public MainJoueur1 creerMain1() {
@@ -34,11 +34,11 @@ public class Paquet {
 		// on prend 5 cartes du paquet
 		for (int i = 0; i < 5; i++) {
 			// on ajoute dans la main la dernière carte du paquet
-			int indexDerniereCarte = cartes.size() - 1;
-			Carte derniereCarte = cartes.get(indexDerniereCarte);
+			int indexDerniereCarte = this.cartes.size() - 1;
+			Carte derniereCarte = this.cartes.get(indexDerniereCarte);
 			m.add(derniereCarte);
 			// et on l'enlève du paquet
-			cartes.remove(derniereCarte);
+			this.cartes.remove(derniereCarte);
 		}
 		return m;
 	}
@@ -46,7 +46,7 @@ public class Paquet {
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		for (Carte c : cartes) {
+		for (Carte c : this.cartes) {
 			buffer.append(c);
 			buffer.append("\n");
 		}
@@ -54,6 +54,6 @@ public class Paquet {
 	}
 
 	public int size() {
-		return cartes.size();
+		return this.cartes.size();
 	}
 }

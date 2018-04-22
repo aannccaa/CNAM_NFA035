@@ -1,3 +1,4 @@
+package banque;
 import java.util.Comparator;
 
 public class ordreParSolde implements Comparator<Compte>{

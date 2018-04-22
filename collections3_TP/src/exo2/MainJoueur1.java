@@ -2,6 +2,7 @@ package exo2;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /*
 Question 4 : MainJoueur1
@@ -37,7 +38,7 @@ for( Carte c: m){
  */
 
 public class MainJoueur1 implements Iterable<Carte> {
-	private HashSet<Carte> cartes;
+	private Set<Carte> cartes;
 
 	public MainJoueur1() {
 		cartes = new HashSet<>();
@@ -53,7 +54,7 @@ public class MainJoueur1 implements Iterable<Carte> {
 
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		for (Carte c: cartes) {
+		for (Carte c: this.cartes) {
 			buffer.append(c);
 			buffer.append("\n");
 		}

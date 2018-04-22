@@ -27,5 +27,6 @@ public class TestPaquet {
 		} else {
 			System.out.println("La main ne contient pas la carte " + c.toString());
 		}
+		scan.close();
 	}
 }

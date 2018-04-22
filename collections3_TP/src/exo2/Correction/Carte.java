@@ -1,6 +1,6 @@
 package exo2.Correction;
 
-public class Carte {
+public class Carte implements Comparable<Carte>{
 	private int valeur;
 	private Couleur couleur;
 

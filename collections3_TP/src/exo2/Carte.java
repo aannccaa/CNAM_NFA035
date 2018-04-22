@@ -10,7 +10,10 @@ fonctionnement de ces deux méthodes:
 	et testez à nouveau (en y ajoutant des doublons).
  */
 
-public class Carte {
+public class Carte implements Comparable<Carte> {
+
+//decommenter si on veut pas implementer Comparable et la méthode "compareTo"
+// public class Carte {
 
 	private int valeur;
 	private Couleur couleur;
@@ -33,7 +36,9 @@ public class Carte {
 		return "" + this.valeur + " de " + this.couleur;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -45,7 +50,9 @@ public class Carte {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -60,33 +67,30 @@ public class Carte {
 			return false;
 		}
 		Carte other = (Carte) obj;
-		if (this.couleur != other.couleur) {
+		if (this.getCouleur() != other.getCouleur()) {
 			return false;
 		}
-		if (this.valeur != other.valeur) {
+		if (this.getValeur() != other.getValeur()) {
 			return false;
 		}
 		return true;
 	}
 
-//	@Override
-//	public int hashCode() {
-//		String s = String.format("%s%s", this.valeur, this.couleur);
-//		return s.hashCode();
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (obj == null || !(obj instanceof Carte)) {
-//			return false;
-//		} else if (obj == this) {
-//			return true;
-//
-//		} else {
-//			Carte c = (Carte) obj;
-//			return (c.valeur == this.valeur && c.couleur == this.couleur);
-//		}
-//	}
-	
-	
+	@Override
+	public int compareTo(Carte other) {
+		// on compare d'abord par valeur, puis par couleur
+		if (this.valeur == other.valeur) {
+			if (this.couleur.ordinal() < other.couleur.ordinal()) {
+				return -1;
+			} else if (this.couleur.ordinal() > other.couleur.ordinal()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} else if (this.valeur < other.valeur) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
 }
