@@ -21,13 +21,14 @@ public class MainJoueur2 implements Iterable<Carte> {
 		// StringBuilder est une manière efficace de construire de grandes
 		// String.
 		StringBuilder b = new StringBuilder();
-		boolean pasDebut = false;
+		boolean debut = true;
 		for (Carte c : cartes) {
-			if (pasDebut)
+			if (!debut) {
 				b.append(", ");
+			}
 			// Notez l'utilisation du toString de carte !
 			b.append(c.toString());
-			pasDebut = true;
+			debut = false;
 		}
 		return b.toString();
 	}
@@ -37,14 +38,14 @@ public class MainJoueur2 implements Iterable<Carte> {
 	 * main dont les cartes sont consécutives. Elles peuvent ne pas avoir toutes la
 	 * même couleur (sinon, c'est en plus une <em>quinte flush</em>).
 	 * <p>
-	 * Pour la cohérence de la définition mathématique,
-	 * on considèrera qu'une main
+	 * Pour la cohérence de la définition mathématique, on considèrera qu'une main
 	 * vide est une suite.
-	 * <p> On s'aperçoit que la manipulation de la valeur des
-	 * cartes est un peu malaisée (si vous avez utilisé getValeur() directement,
-	 * considérez que c'est bon, ceci dit)... On aura sans doute
-	 * intérêt à faire des valeurs des cartes une classe, comme on l'a fait
-	 * pour les couleurs.
+	 * <p>
+	 * On s'aperçoit que la manipulation de la valeur des cartes est un peu malaisée
+	 * (si vous avez utilisé getValeur() directement, considérez que c'est bon, ceci
+	 * dit)... On aura sans doute intérêt à faire des valeurs des cartes une classe,
+	 * comme on l'a fait pour les couleurs.
+	 * 
 	 * @return vrai si la main est une suite.
 	 */
 	public boolean estSuite() {
@@ -55,8 +56,7 @@ public class MainJoueur2 implements Iterable<Carte> {
 			Carte precedente = it.next();
 			while (estSuite && it.hasNext()) {
 				Carte carte = it.next();
-				if (carte.getVraieValeur()
-						!= precedente.getVraieValeur() + 1) {
+				if (carte.getVraieValeur() != precedente.getVraieValeur() + 1) {
 					estSuite = false;
 				} else {
 					precedente = carte;
