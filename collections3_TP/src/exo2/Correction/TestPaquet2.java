@@ -2,13 +2,13 @@ package exo2.Correction;
 
 import java.util.Scanner;
 
-public class TestPaquet {
+public class TestPaquet2 {
 	public static void main(String[] args) {
 		// Creation d’un paquet
 		Paquet paquet = new Paquet();
 		System.out.println("taille du paquet: " + paquet.size());
 		// Creation d’une main1
-		MainJoueur1 maMain = paquet.creerMain1();
+		MainJoueur2 maMain = paquet.creerMain2();
 		System.out.println("mon jeu:");
 		System.out.println(maMain);
 		// Les cartes restant dans le paquet
