@@ -15,10 +15,7 @@ public class TestSearchTexteInLine {
 	 */
 	@Test
 	public void test_existeTexteInLine_Yes() throws IOException {
-		String[] param = new String[2];
-		param[0] = "trois";
-		param[1] = "demo.txt";
-		boolean actual = SearchTexteInLine.existeTexteInLine(param);
+		boolean actual = SearchTexteInLine.existeTexteInLine("trois", "demo.txt");
 		boolean expected = true;
 
 		Assert.assertEquals(expected, actual);
@@ -26,10 +23,7 @@ public class TestSearchTexteInLine {
 
 	@Test
 	public void test_existeTexteInLine_No() throws IOException {
-		String[] param = new String[2];
-		param[0] = "n'existe pas";
-		param[1] = "demo.txt";
-		boolean actual = SearchTexteInLine.existeTexteInLine(param);
+		boolean actual = SearchTexteInLine.existeTexteInLine("n'existe pas", "demo.txt");
 		boolean expected = false;
 
 		Assert.assertEquals(expected, actual);

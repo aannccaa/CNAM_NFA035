@@ -6,29 +6,39 @@ import java.io.IOException;
 
 public class SearchTexteInLine {
 
-	public static boolean existeTexteInLine(String[] param) throws IOException {
-		String texte = param[0];
-		String fichier = param[1];
-		FileReader fr = new FileReader(fichier);
-		BufferedReader br = new BufferedReader(fr);
-		String line = br.readLine();
-		while (line != null) {
-			if (line.contains(texte)) {
-				return true;
+	public static boolean existeTexteInLine(String textToFind, String nomFichier) throws IOException {
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			fr = new FileReader(nomFichier);
+			br = new BufferedReader(fr);
+
+			String line = br.readLine();
+			while (line != null) {
+				if (line.contains(textToFind)) {
+					return true;
+				}
+				line = br.readLine();
 			}
-			line = br.readLine();
-		}
-		if (br != null) {
-			br.close();
+		} finally {
+			if (br != null) {
+				br.close();
+			}
+			if (fr != null) {
+				fr.close();
+			}
 		}
 		return false;
 	}
 
 	public static void main(String[] args) throws IOException {
-		String[] param = new String[2];
-		param[0] = "trois";
-		param[1] = "demo.txt";
-		boolean b = existeTexteInLine(param);
+		if(args.length > 0) {
+			for(String s : args) {
+				System.out.println(s);
+			}
+		}
+		
+		boolean b = existeTexteInLine("trois", "demo.txt");
 		System.out.println(b);
 	}
 

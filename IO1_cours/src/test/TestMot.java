@@ -1,4 +1,5 @@
 package test;
+
 import myIO.Mot;
 
 import java.io.IOException;
@@ -14,15 +15,38 @@ public class TestMot {
 	public void test_getMots() {
 		String s = "je sais: tu n'est pas là bas";
 		StringReader sr = new StringReader(s);
-		List<String> mots = null;
 		try {
-			mots = Mot.getMots(sr);
-		} catch (IOException e) {
-			Assert.fail("exception");
+			List<String> mots = null;
+			try {
+				mots = Mot.getMots(sr);
+			} catch (IOException e) {
+				Assert.fail("exception");
+			}
+			String actual = mots.toString();
+			String expected = "[je, sais, tu, n, est, pas, là, bas]";
+			Assert.assertEquals(expected, actual);
+		} finally {
+			sr.close();
 		}
-		String actual = mots.toString();
-		String expected = "[je, sais, tu, n, est, pas, là, bas]";
-		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void test_getMots_Vide() {
+		String s = "";
+		StringReader sr = new StringReader(s);
+		try {
+			List<String> mots = null;
+			try {
+				mots = Mot.getMots(sr);
+			} catch (IOException e) {
+				Assert.fail("exception");
+			}
+			String actual = mots.toString();
+			String expected = "[]";
+			Assert.assertEquals(expected, actual);
+		} finally {
+			sr.close();
+		}
 	}
 
 }
