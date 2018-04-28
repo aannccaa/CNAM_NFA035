@@ -1,0 +1,2 @@
+Ceci est un texte à afficher qui fait
+49 octets.

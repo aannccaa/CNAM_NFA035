@@ -1,0 +1,33 @@
+Dans cette nouvelle version, nous avons ajouté la commande SET.
+
+Les modifications sont les suivantes:
+
+a) modification du contexte pour inclure les variables.
+b) ajout de SET : pas de difficulté majeure.
+c) modification des commandes ADD, etc... pour prendre en compte les variables.
+	- la grammaire de ces commandes se complexifie :
+		au lieu d'une valeur simple, on peut avoir deux choses:
+			une constante numérique, ou un nom de variable.
+	- on nomme cela une Expression, et on la représente par une interface
+	qui permettra de représenter la constante ou la variable d'une manière 
+	uniforme. Cette classe aura deux sous-classes: ExpressionConstante et ExpressionVariable.
+	- on écrit le code pour analyser ces expressions... elles se retrouvent après toutes les commandes ADD, etc.
+	La grammaire de notre langage est donc:
+	
+	programme ::= instruction* 
+	
+	instruction ::=
+		  "ADD" expression
+		| "MULT" expression
+		| "CLEAR"
+		| "SET" IDENTIFIANT
+		| "PRINT"
+	
+	expression ::=
+		NOMBRE 
+		| IDENTIFIANT
+		
+	NOMBRE ::= (un nombre réel reconnu par StreamTokenizer)
+	IDENTIFIANT ::= (un mot quelconque reconnu par StreamTokenizer)
+	
+	
