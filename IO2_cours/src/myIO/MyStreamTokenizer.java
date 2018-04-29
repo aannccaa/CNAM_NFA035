@@ -25,7 +25,7 @@ public class MyStreamTokenizer {
 		// tant que je ne suis pas à la fin du fichier...
 		while(t.ttype != StreamTokenizer.TT_EOF) {
 			// si on n'a pas lu un mot ou si le mot "CERCLE" n'a pas été trouvé
-			if (!t.sval.equals("CERCLE")) {
+			if (t.ttype != StreamTokenizer.TT_WORD || !t.sval.equals("CERCLE")) {
 				Exception.myError("'CERCLE' attendu");
 			}
 			

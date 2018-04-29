@@ -23,7 +23,8 @@ public class MyStreamTokenizer2 {
 		StreamTokenizer t = new StreamTokenizer(new FileReader("cercle.txt"));
 		t.nextToken();
 		while(t.ttype != StreamTokenizer.TT_EOF) {
-			if(/*t.ttype != StreamTokenizer.TT_WORD ||*/ !t.sval.equals("CERCLE")) {
+			if(!"CERCLE".equals(t.sval)) {
+			//if(t.ttype != StreamTokenizer.TT_WORD || !t.sval.equals("CERCLE")) {
 				Exception.myError("'CERCLE' attendu");
 			}
 			t.nextToken();
