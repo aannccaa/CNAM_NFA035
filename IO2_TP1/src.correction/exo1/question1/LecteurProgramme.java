@@ -3,8 +3,6 @@ package exo1.question1;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StreamTokenizer;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LecteurProgramme {
 

@@ -2,7 +2,6 @@ package exo1.question1;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.List;
 
 public class Demo {
 	public static void main(String[] args) throws IOException {
