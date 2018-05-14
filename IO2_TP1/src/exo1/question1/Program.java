@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Program {
+	List<Command> commands;
 
-	List<Command> commands = new ArrayList<>();
-
-	// public Program() {
-	// this.commands = new ArrayList<>();
-	// }
+	public Program() {
+		this.commands = new ArrayList<>();
+	}
 
 	public void add(Command c) {
 		this.commands.add(c);

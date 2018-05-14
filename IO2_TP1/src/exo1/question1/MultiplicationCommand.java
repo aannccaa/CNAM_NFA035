@@ -1,16 +1,9 @@
 package exo1.question1;
 
-public class MultiplicationCommand implements Command{
-	double value;
-	
-	public MultiplicationCommand(double value) {
-		this.value = value;
-	}
-	@Override
+public class MultiplicationCommand extends CommandAvecUneExpression {
 	public void executer(Context context) {
-		double calculatedValue = this.value * context.getValue();
+		double var = this.expression.evaluer(context);
+		double calculatedValue = var * context.getValue();
 		context.setValue(calculatedValue);
-		
 	}
-
 }

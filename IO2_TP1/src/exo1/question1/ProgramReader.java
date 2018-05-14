@@ -3,76 +3,59 @@ package exo1.question1;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StreamTokenizer;
-import java.util.stream.Stream;
 
 public class ProgramReader {
 	StreamTokenizer tok;
 	Program program;
 
-	public void readProgram(Reader r) throws IOException {
+	public Program readProgram(Reader r) throws IOException {
 		tok = new StreamTokenizer(r);
 		program = new Program();
-		tok.nextToken();
-		while (tok.ttype != StreamTokenizer.TT_EOF) {
-			if (tok.ttype == StreamTokenizer.TT_WORD) {
-				switch (tok.sval) {
-				case "ADD":
-					lireAdd();
-					break;
-				case ("MULT"):
-					lireMultiplication();
-					break;
-				case "PRINT":
-					lirePrint();
-					break;
-				default:
-					error("Mot clef innatendu" + tok);
-					break;
-				}
-			} else {
-				error("charactère innatendu" + tok.toString());
+
+		while (true) {
+			Command command = lireCommand();
+			if (command == null) {
 				break;
 			}
+			program.add(command);
 		}
-	}
-
-	private void lireMultiplication() throws IOException {
-		tok.nextToken(); // on saute le MULT
-		if(tok.ttype != StreamTokenizer.TT_NUMBER) {
-			error("nombre attendu" + tok.toString());
-		}
-		double value = tok.nval;
-		Command c = new MultiplicationCommand(value);
-		program.add(c);
-		tok.nextToken();
-	}
-
-	private void lirePrint() throws IOException {
-		// on est sur qu'on est sur le mot PRINT
-		Command c = new PrintCommand();
-		program.add(c);
-		tok.nextToken();
-	}
-
-	private void lireAdd() throws IOException {
-		tok.nextToken(); // je saute le ADD et normalement j'arrive sur un chiffre
-		if (tok.ttype != StreamTokenizer.TT_NUMBER) {
-			error("numéro attendu" + tok.toString());
-		}
-		// stockage du nombre dans une variable
-		double value = tok.nval;
-		Command c = new AddCommand(value);
-		program.add(c);
-
-		tok.nextToken();
-	}
-
-	private void error(String message) {
-		throw new RuntimeException(message);
-	}
-
-	public Program getProgram() {
 		return program;
 	}
 
+	private Command lireCommand() throws IOException {
+		this.tok.nextToken();
+		// si on est à la fin du fichier on s'arrete
+		if (this.tok.ttype == StreamTokenizer.TT_EOF) {
+			return null;
+		}
+		// si le charactere lu est un mot
+		if (tok.ttype == StreamTokenizer.TT_WORD) {
+			Command command = getCommand(tok.sval);
+			// en fonction de l'instruction, la commande sait lire les parametres (s'il y en
+			// a)
+			command.lireParametres(tok);
+			return command;
+		}
+
+		throw new RuntimeException("charactère innatendu" + tok.toString());
+	}
+
+	private static Command getCommand(String cmd) {
+		switch (cmd) {
+		case "ADD":
+			return new AddCommand();
+		case "MULT":
+			return new MultiplicationCommand();
+		case "PRINT":
+			return new PrintCommand();
+		case "CLEAR":
+			return new ClearCommand();
+		case "SET":
+			return new SetVarCommand();
+		case "PRINTVAR":
+			return new PrintVarCommand();
+		default:
+			throw new RuntimeException("Mot clef innatendu" + cmd);
+		}
+	}
 }

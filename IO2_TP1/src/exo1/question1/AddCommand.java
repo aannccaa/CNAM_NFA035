@@ -1,16 +1,9 @@
 package exo1.question1;
 
-public class AddCommand implements Command{
-	double value;
-	
-	public AddCommand(double value) {
-		this.value = value;
-	}
-
-	@Override
+public class AddCommand extends CommandAvecUneExpression{
 	public void executer(Context context) {
-		double calculatedVal = this.value + context.getValue();
+		double var = this.expression.evaluer(context);
+		double calculatedVal = var + context.getValue();
 		context.setValue(calculatedVal);
 	}
-
 }
