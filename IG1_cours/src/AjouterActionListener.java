@@ -1,3 +1,5 @@
+// Association d'une action au bouton Ajouter
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

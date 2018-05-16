@@ -1,4 +1,4 @@
-// Association d'une action à un bouton
+// Association d'une action au bouton Effacer
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

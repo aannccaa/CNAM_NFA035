@@ -1,25 +1,20 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-
 // Fenêtre graphique
 
 import java.awt.Container;
-
 import javax.swing.*;
 
 public class JPanneauCalculette extends JFrame{
-	private JTextField nombre1Field;
-	private JTextField resultatField;
-	private JButton ajouterButton;
-	private JButton effacerButton;
+	private JTextField nombre1Field; // champ dans lequel on introduit un nombre
+	private JTextField resultatField; // champ readlonly dans lequel on calcule le résultat
+	private JButton ajouterButton; // bouton pour faire des aditions
+	private JButton effacerButton; // bouton pour remettre à 0 les champs
 	
 	public JPanneauCalculette() {
-		this.nombre1Field = new JTextField(10);
+		this.nombre1Field = new JTextField(10); // champ de 10 charactères
 		this.resultatField = new JTextField(10);
 		this.resultatField.setEditable(false); // pas modifiable
-		this.ajouterButton = new JButton("+");
-		this.effacerButton = new JButton("effacer");
+		this.ajouterButton = new JButton("+"); // bouton nommé "+"
+		this.effacerButton = new JButton("effacer"); // bouton nommé "effacer"
 		mettreEnPage();
 	}
 	

@@ -14,7 +14,6 @@ public class CalculetteApplication {
 		// assigner un comportement au boutons
 		activer();
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		;
 		ui.setVisible(true);
 	}
 
@@ -43,6 +42,6 @@ public class CalculetteApplication {
 		ui.getAjouterButton().addActionListener(ajouterActionListener);
 		
 		EffacerActionListener effacerActionListener = new EffacerActionListener(this);
-		ui.getAjouterButton().addActionListener(effacerActionListener);
+		ui.getEffacerButton().addActionListener(effacerActionListener);
 	}
 }
