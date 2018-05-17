@@ -1,3 +1,4 @@
+package CalculetteCata;
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -7,7 +8,7 @@ public class Main {
 
 			@Override
 			public void run() {
-				CalculetteApplication app = new CalculetteApplication();
+				CalculetteController app = new CalculetteController();
 
 			}
 		});

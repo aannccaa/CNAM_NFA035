@@ -1,3 +1,4 @@
+package CalculetteCata;
 // Fenêtre graphique
 
 import java.awt.Container;
@@ -8,6 +9,7 @@ public class JPanneauCalculette extends JFrame{
 	private JTextField resultatField; // champ readlonly dans lequel on calcule le résultat
 	private JButton ajouterButton; // bouton pour faire des aditions
 	private JButton effacerButton; // bouton pour remettre à 0 les champs
+	private CalculetteController app;
 	
 	public JPanneauCalculette() {
 		this.nombre1Field = new JTextField(10); // champ de 10 charactères
@@ -15,9 +17,29 @@ public class JPanneauCalculette extends JFrame{
 		this.resultatField.setEditable(false); // pas modifiable
 		this.ajouterButton = new JButton("+"); // bouton nommé "+"
 		this.effacerButton = new JButton("effacer"); // bouton nommé "effacer"
-		mettreEnPage();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.mettreEnPage();
+		this.setVisible(true);
 	}
 	
+	public JPanneauCalculette(CalculetteController app) {
+		this();
+		this.app = app;
+		this.activerActions();
+		this.actualiser();
+	}
+	
+	private void activerActions() {
+		AjouterActionListener ajouterActionListener = new AjouterActionListener(this.app);
+		this.getAjouterButton().addActionListener(ajouterActionListener);
+		
+		EffacerActionListener effacerActionListener = new EffacerActionListener(this.app);
+		this.getEffacerButton().addActionListener(effacerActionListener);
+		
+		SyncInputActionListener syncInputActionListener = new SyncInputActionListener(this.app);
+		this.getNombre1Field().addFocusListener(syncInputActionListener);
+	}
+
 	private void mettreEnPage() {
 		// on récupère le conteneur interne de la frame
 		Container panel = this.getContentPane();
@@ -47,5 +69,13 @@ public class JPanneauCalculette extends JFrame{
 	
 	public JButton getEffacerButton() {
 		return this.effacerButton;
+	}
+
+	public void actualiser() {
+		this.getNombre1Field().setText(String.format("%.2f",
+				this.app.getModel().getInput()));
+		this.getResultatField().setText(String.format("%.2f",
+				this.app.getModel().getResultat()));
+
 	}
 }
