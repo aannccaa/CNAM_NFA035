@@ -2,6 +2,8 @@ package Calculette;
 // Fenêtre graphique
 
 import java.awt.Container;
+import java.awt.GridLayout;
+
 import javax.swing.*;
 
 public class JPanneauCalculette extends JFrame{
@@ -22,9 +24,14 @@ public class JPanneauCalculette extends JFrame{
 	private void mettreEnPage() {
 		// on récupère le conteneur interne de la frame
 		Container panel = this.getContentPane();
-		// on fixe le layout: on va empiler les composants sur la verticale de la page
+		
+		// on fixe le layout: une boxLayout on va empiler les composants sur la verticale de la page
 		BoxLayout boxLayout = new BoxLayout(panel, BoxLayout.PAGE_AXIS);
 		panel.setLayout(boxLayout);
+//		// Variante GridLayout => On fixe son "layout" : une grille de
+//	    // 4 lignes et 1 colonnes.
+//		panel.setLayout(new GridLayout(4,1));
+		
 		panel.add(nombre1Field);
 		panel.add(ajouterButton);
 		panel.add(resultatField);

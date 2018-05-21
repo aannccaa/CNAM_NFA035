@@ -9,10 +9,7 @@ public class Main {
 			@Override
 			public void run() {
 				CalculetteApplication app = new CalculetteApplication();
-
 			}
 		});
-
 	}
-
 }

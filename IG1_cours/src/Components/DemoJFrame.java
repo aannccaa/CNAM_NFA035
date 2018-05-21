@@ -1,3 +1,4 @@
+package Components;
 import java.awt.Color;
 
 import javax.swing.JFrame;
@@ -17,7 +18,9 @@ public class DemoJFrame {
 		f.setText("toto");
 		//f.setEnabled(false);//desactivé, grisé
 		//f.setEditable(false);//read only
-		frame.add(f);	
+		frame.add(f);
+		
+		// ajustement de la size du frame en fonction du contenu
 		frame.pack();
 		//Dimension dim = new Dimension(640, 480);
 		//frame.setSize(dim);
