@@ -1,5 +1,11 @@
+package ex3;
+
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,9 +29,35 @@ public class App {
 	}
 
 	private void activer() {
-		// TODO Auto-generated method stub
-
+		choisirCouleurBouton.addActionListener(EventHandler.create(ActionListener.class, this, "choisirCouleur"));
+		droiteBouton.addActionListener(EventHandler.create(ActionListener.class, this, "droite"));
+		gaucheBouton.addActionListener(EventHandler.create(ActionListener.class, this, "gauche"));
+		hautBouton.addActionListener(EventHandler.create(ActionListener.class, this, "haut"));
+		basBouton.addActionListener(EventHandler.create(ActionListener.class, this, "bas"));
 	}
+	
+	private void choisirCouleur() {
+		Color newColor = JColorChooser.showDialog(frame, "Choisir la couleur du dessin", monObjet.getForeground());
+		monObjet.setCouleurCercle(newColor);
+	}
+	
+	private void droite() {
+		monObjet.setCentreX(monObjet.getCentreX() + 10);
+	}
+	
+	private void gauche() {
+		monObjet.setCentreX(monObjet.getCentreX() - 10);
+	}
+	
+	private void bas() {
+		monObjet.setCentreY(monObjet.getCentreY() + 10); // axe y valeurs croissantes vers le bas
+	}
+	
+	private void haut() {
+		monObjet.setCentreY(monObjet.getCentreY() - 10); // axe y valeurs decroissantes vers le haut
+	}
+	
+	
 
 	private void mettreEnPage() {
 		JPanel panel = new JPanel();
@@ -51,7 +83,7 @@ public class App {
 
 			@Override
 			public void run() {
-				CarreAvecRond3 app = new CarreAvecRond3();
+				new App();
 			}
 
 		});

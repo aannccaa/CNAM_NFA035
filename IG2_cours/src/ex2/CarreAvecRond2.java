@@ -1,3 +1,5 @@
+package ex2;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,7 +12,7 @@ public class CarreAvecRond2 extends JPanel {
 	private int centreX = 10;
 	private int centreY = 10;
 	private int rayon = 30;
-	private Color couleurCercle = Color.BLUE; // ca peut être enlevé si on utilise un foregroundColor
+	private Color couleurCercle = Color.BLUE;
 
 	public int getCentreX() {
 		return centreX;
@@ -48,13 +50,9 @@ public class CarreAvecRond2 extends JPanel {
 		repaint();
 	}
 
-	// si la classe aurait étendue JComponent,
-	// on aurait eu un fond gris, en étendant JPanel
-	// on peut utiliser sa méthode setBackground()
+
 	public CarreAvecRond2() {
 		setBackground(Color.GREEN);
-		//si on decommente il va remplacer la variable couleur cercle
-		//setForeground(Color.YELLOW);
 	}
 
 	public Dimension getPreferredSize() {
@@ -62,14 +60,7 @@ public class CarreAvecRond2 extends JPanel {
 	}
 
 	protected void paintComponent(Graphics g) {
-		// effacement de l'ancien dessin:
-		// supper designe la classe parente donc JPanel,
-		// qui commence aussi par un appel super.paintComponent(g)
-		// qui va appeller le paintComponent de JComponent
-		super.paintComponent(g); // si on comment cette ligne, le fond devient gris (plus dessiné par JPanel) 
-		// on fixe la couleur pour dessiner, 
-		// cette méthode aurait pu ne pas étre appellé
-		// si on aurait utilisé setForeground():
+		super.paintComponent(g); // si on comment cette ligne, le fond devient gris (plus dessiné par JPanel)
 		g.setColor(couleurCercle);
 		// on desine un cercle:
 		g.fillOval(centreX - rayon, centreY - rayon, rayon * 2, rayon * 2);
@@ -80,16 +71,12 @@ public class CarreAvecRond2 extends JPanel {
 
 			@Override
 			public void run() {
-			JFrame frame = new JFrame();
-			frame.add(new CarreAvecRond2());
-			frame.pack();
-			frame.setVisible(true);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
+				JFrame frame = new JFrame();
+				frame.add(new CarreAvecRond2());
+				frame.pack();
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
-			
 		});
-
 	}
-
 }
