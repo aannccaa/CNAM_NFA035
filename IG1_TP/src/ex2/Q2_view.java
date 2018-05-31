@@ -1,5 +1,6 @@
 package ex2;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.io.File;
@@ -30,7 +31,7 @@ public class Q2_view extends JFrame {
 
 	public void pageSetup() {
 		Container c = this.getContentPane();
-		c.setLayout(new FlowLayout());
+		c.setLayout(new BorderLayout());
 		c.add(textArea);
 		JScrollPane scrollTextArea = new JScrollPane(textArea);
 		textArea.setLineWrap(true);
