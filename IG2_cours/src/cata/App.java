@@ -63,13 +63,14 @@ public class App {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton button = (JButton) e.getSource();
-				SimpleAction action = (SimpleAction)button.getClientProperty("action");
+				SimpleAction action = (SimpleAction)button.getClientProperty("actiuneaButonului");
 				executeAction(action);
 			}
 		};
+		
 		for(SimpleAction a : this.actions) {
 			JButton b = new JButton(a.getText());
-			b.putClientProperty("action", a);
+			b.putClientProperty("actiuneaButonului", a);
 			toolBar.add(b);
 			b.addActionListener(listener);
 		}
