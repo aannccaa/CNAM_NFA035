@@ -1,52 +1,45 @@
-package exempleGraphics;
+package exGraphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Polygon;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-@SuppressWarnings("serial")
-public class PolygonesDemo extends JPanel {
-
-	public PolygonesDemo() {
+public class TexteDemo extends JPanel{
+	
+	public TexteDemo() {
 		setBackground(Color.WHITE);
 	}
-
-	@Override
+	
 	public Dimension getPreferredSize() {
-		return new Dimension(300, 300);
-
+		return new Dimension(500, 300);
 	}
-
-	@Override
+	
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g); // Laisser cette méthode ici.
+		super.paintComponent(g);
 		g.setColor(Color.BLUE);
-		Polygon poly = new Polygon();
-		poly.addPoint(100, 100);
-		poly.addPoint(200, 200);
-		poly.addPoint(150, 250);
-		poly.addPoint(200, 30);
-		poly.addPoint(100, 30);
-		g.drawPolygon(poly);
+		g.setFont(new Font("Serif", Font.ITALIC, 48));
+		g.drawString("Bonjour tout le monde!", 10, 100);
+		g.setColor(Color.RED);
+		g.drawLine(10, 100, 500, 100); // surlignage
 	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-
-			@Override
+			
 			public void run() {
-				JFrame frame = new JFrame();
-				frame.add(new PolygonesDemo());
+				JFrame frame = new JFrame("Draw String");
+				frame.add(new TexteDemo());
 				frame.pack();
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 			}
 		});
+
 	}
+
 }

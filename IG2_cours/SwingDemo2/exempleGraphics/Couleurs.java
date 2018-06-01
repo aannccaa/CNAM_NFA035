@@ -30,6 +30,7 @@ public class Couleurs extends JPanel {
 		g.fillRect(0, 0, 100, 100);
 		g.setColor(new Color(100,255,100));
 		g.drawLine(0, 0, 300, 300);
+		g.drawOval(0, 150, 50, 90);
 		g.fillOval(200, 100, 100, 100);
 		g.setColor(ancienne);
 	}
