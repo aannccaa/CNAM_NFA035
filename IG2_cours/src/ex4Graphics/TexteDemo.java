@@ -1,47 +1,45 @@
-package exGraphics;
+package ex4Graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Polygon;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class Polygone extends JPanel{
-
-	public Polygone() {
-		setBackground(Color.YELLOW);
+public class TexteDemo extends JPanel{
+	
+	public TexteDemo() {
+		setBackground(Color.WHITE);
 	}
+	
 	public Dimension getPreferredSize() {
-		return new Dimension(400, 400);
+		return new Dimension(500, 300);
 	}
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Polygon poly = new Polygon();
-		poly.addPoint(100, 100);
-		poly.addPoint(200, 200);
-		poly.addPoint(300, 150);
-		poly.addPoint(200, 30);
-		poly.addPoint(100, 40);
-		g.drawPolygon(poly);
-		//g.fillPolygon(poly);
+		g.setColor(Color.BLUE);
+		g.setFont(new Font("Serif", Font.ITALIC, 48));
+		g.drawString("Bonjour tout le monde!", 10, 100);
+		g.setColor(Color.RED);
+		g.drawLine(10, 100, 500, 100); // surlignage
 	}
-	
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-
-			@Override
+			
 			public void run() {
-				JFrame frame = new JFrame("Polygones");
-				frame.add(new Polygone());
+				JFrame frame = new JFrame("Draw String");
+				frame.add(new TexteDemo());
 				frame.pack();
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
-			
 		});
+
 	}
+
 }

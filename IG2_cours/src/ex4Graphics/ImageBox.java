@@ -1,4 +1,4 @@
-package exGraphics;
+package ex4Graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;

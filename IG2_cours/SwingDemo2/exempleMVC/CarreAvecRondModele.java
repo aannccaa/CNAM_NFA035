@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+
 /**
  * Version MVC de notre exemple. On pourrait utiliser la classe
  * {@link Observable}, mais on aurait une interface trop vague... et d'autre
@@ -20,7 +21,7 @@ public class CarreAvecRondModele {
 	private int centreY = 30;
 	private int rayon = 30;
 	private Color couleurCercle = Color.BLUE;
-	
+
 	private List<CarreAvecRondModeleListener> listeners = new ArrayList<CarreAvecRondModeleListener>();
 
 	public int getCentreX() {
@@ -76,21 +77,22 @@ public class CarreAvecRondModele {
 	public int getTop() {
 		return centreY - rayon;
 	}
-	
+
 	public void addModeleListener(CarreAvecRondModeleListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	public void removeModeleListener(CarreAvecRondModeleListener listener) {
 		listeners.remove(listener);
 	}
 
 	/**
 	 * Prévient les listeners d'une modification.
+	 * 
 	 * @param event
 	 */
 	private void notifyListeners() {
-		for (CarreAvecRondModeleListener l: listeners) {
+		for (CarreAvecRondModeleListener l : listeners) {
 			l.modeleModifie();
 		}
 	}

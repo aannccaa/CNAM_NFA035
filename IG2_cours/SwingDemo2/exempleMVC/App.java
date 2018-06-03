@@ -8,8 +8,7 @@ import java.beans.EventHandler;
 import javax.swing.*;
 
 public class App {
-	private JFrame frame = new JFrame(
-			"Carré avec rond 2, le retour de la vengeance");
+	private JFrame frame = new JFrame("Carré avec rond 2, le retour de la vengeance");
 	private JCarreAvecRond3 monObjet = new JCarreAvecRond3();
 	// Pour montrer l'architecture MVC:
 	private JCarreAvecRond3 copie = new JCarreAvecRond3();
@@ -27,9 +26,9 @@ public class App {
 	}
 
 	private void mettreEnPage() {
-		JPanel panel= new JPanel();
+		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		JToolBar toolBar= new JToolBar(JToolBar.VERTICAL);
+		JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
 		toolBar.add(choisirCouleurBouton);
 		toolBar.add(gaucheBouton);
 		toolBar.add(droiteBouton);
@@ -45,10 +44,8 @@ public class App {
 		frame.setVisible(true);
 	}
 
-	
 	private void activer() {
-		choisirCouleurBouton.addActionListener(EventHandler.create(
-				ActionListener.class, this, "choisirCouleur"));		
+		choisirCouleurBouton.addActionListener(EventHandler.create(ActionListener.class, this, "choisirCouleur")); // this represent le frame
 		droiteBouton.addActionListener(EventHandler.create(ActionListener.class, this, "droite"));
 		gaucheBouton.addActionListener(EventHandler.create(ActionListener.class, this, "gauche"));
 		hautButton.addActionListener(EventHandler.create(ActionListener.class, this, "haut"));
@@ -60,28 +57,28 @@ public class App {
 		Color newColor = JColorChooser.showDialog(frame, "Choisir la couleur de dessin", monObjet.getForeground());
 		monObjet.setCouleurCercle(newColor);
 	}
-	
+
 	public void droite() {
 		monObjet.setCentreX(monObjet.getCentreX() + 10);
 	}
-	
+
 	public void gauche() {
-		monObjet.setCentreX(monObjet.getCentreX() - 10);		
+		monObjet.setCentreX(monObjet.getCentreX() - 10);
 	}
-	
+
 	public void haut() {
 		monObjet.setCentreY(monObjet.getCentreY() - 10);
 	}
-	
+
 	public void bas() {
 		monObjet.setCentreY(monObjet.getCentreY() + 10);
 	}
-	
+
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {	
+		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new App();				
+				new App();
 			}
 		});
 	}

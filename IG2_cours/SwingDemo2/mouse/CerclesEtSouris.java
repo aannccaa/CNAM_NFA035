@@ -85,7 +85,7 @@ public class CerclesEtSouris extends JPanel {
 		public void mouseDragged(MouseEvent e) {	
 			if (cercleSelectionne!= null) {
 				Point p= e.getPoint();
-				int dx= p.x - lastX;
+				int dx= p.x - lastX; //p.x = position actuelle de la souris
 				int dy= p.y - lastY;
 				cercleSelectionne.setX(cercleSelectionne.getX() + dx);
 				cercleSelectionne.setY(cercleSelectionne.getY() + dy);

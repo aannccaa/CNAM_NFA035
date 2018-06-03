@@ -13,7 +13,7 @@ import java.awt.Point;
  */
 public class Cercle {
 	private CerclesEtSouris proprietaire;
-	private int x, y;
+	private int x, y; // coordonnées du cercle
 	private int rayon;
 	private Color color= Color.BLUE;
 	
@@ -54,8 +54,6 @@ public class Cercle {
 	}
 	
 	public boolean contientPoint(Point p) {
-		// un point est dans le disque si sa distance au centre est
-		// inférieure au rayon...
 		return ((p.x - x)*(p.x -x) + (p.y -y)*(p.y-y)) < rayon* rayon;
 	}
 	

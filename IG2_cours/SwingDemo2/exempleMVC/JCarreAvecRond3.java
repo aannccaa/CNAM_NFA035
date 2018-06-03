@@ -16,8 +16,7 @@ import javax.swing.JPanel;
  * @author rosmord
  */
 @SuppressWarnings("serial")
-public class JCarreAvecRond3 extends JPanel implements
-		CarreAvecRondModeleListener {
+public class JCarreAvecRond3 extends JPanel implements CarreAvecRondModeleListener {
 
 	private CarreAvecRondModele modele;
 
@@ -32,10 +31,10 @@ public class JCarreAvecRond3 extends JPanel implements
 	public void modeleModifie() {
 		repaint();
 		revalidate();
-		// Note: dans une version plus avancée du système, 
-		// on pourrait passer un "événement" au listener, 
-		// celui-ci permettrait de décrire plus précisément ce qui 
-		// s'est passé (voir ActionEvent par exemple), afin de 
+		// Note: dans une version plus avancée du système,
+		// on pourrait passer un "événement" au listener,
+		// celui-ci permettrait de décrire plus précisément ce qui
+		// s'est passé (voir ActionEvent par exemple), afin de
 		// savoir s'il faut appeler repaint ET revalidate.
 	}
 
@@ -45,18 +44,25 @@ public class JCarreAvecRond3 extends JPanel implements
 	}
 
 	public CarreAvecRondModele getModele() {
-		return modele;
+		return this.modele;
 	}
 
 	public void setModele(CarreAvecRondModele modele) {
 		// Si on observe déjà un ancien modèle, on
 		// se désabonne...
 		if (this.modele != null) {
-			this.modele.removeModeleListener(this);
+			this.modele.removeModeleListener(this);// this represente le JCarreAvecRond, qui implemente l'interface
+													// CarreAvecRondModeleListener qui va appeler la méthode
+													// modeleModifie() quand
+													// le modèle est modifié
 		}
-		// on s'inscrit auprès du nouveau modèle..
-		this.modele = modele;
-		modele.addModeleListener(this);
+		// on s'inscrit auprès du nouveau modèle pour qu'il nous previenne quand il est
+		// modifié
+		this.modele = modele; // this.modele prend la valeur du paramètre
+		modele.addModeleListener(this);// this represente le JCarreAvecRond, qui implemente l'interface
+										// CarreAvecRondModeleListener qui va appeler la méthode
+										// modeleModifie() quand
+										// le modèle est modifié
 	}
 
 	@Override
@@ -69,33 +75,33 @@ public class JCarreAvecRond3 extends JPanel implements
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g); // Laisser cette méthode ici.
-		g.setColor(modele.getCouleurCercle());
-		g.fillOval(modele.getLeft(), modele.getTop(), modele.getDiametre(),
-				modele.getDiametre());
+		g.setColor(this.modele.getCouleurCercle());
+		g.fillOval(this.modele.getLeft(), this.modele.getTop(), this.modele.getDiametre(), this.modele.getDiametre());
 	}
 
 	public void setCouleurCercle(Color couleurCercle) {
-		modele.setCouleurCercle(couleurCercle);
+		this.modele.setCouleurCercle(couleurCercle); // le repaint sera appelé indirectement par l'appel de
+												// modele.setCouleurCercle()
 	}
 
 	public void setCentreX(int centreX) {
-		modele.setCentreX(centreX);
+		this.modele.setCentreX(centreX);
 	}
 
 	public void setCentreY(int centreY) {
-		modele.setCentreY(centreY);
+		this.modele.setCentreY(centreY);
 	}
 
 	public void setRayon(int rayon) {
-		modele.setRayon(rayon);
+		this.modele.setRayon(rayon);
 	}
 
 	public int getCentreX() {
-		return modele.getCentreX();
+		return this.modele.getCentreX();
 	}
 
 	public int getCentreY() {
-		return modele.getCentreY();
+		return this.modele.getCentreY();
 	}
 
 }

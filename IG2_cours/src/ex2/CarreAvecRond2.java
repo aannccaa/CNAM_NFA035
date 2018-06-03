@@ -13,6 +13,10 @@ public class CarreAvecRond2 extends JPanel {
 	private int centreY = 10;
 	private int rayon = 30;
 	private Color couleurCercle = Color.BLUE;
+	
+	public CarreAvecRond2() {
+		setBackground(Color.GREEN);
+	}
 
 	public int getCentreX() {
 		return centreX;
@@ -50,10 +54,6 @@ public class CarreAvecRond2 extends JPanel {
 		repaint();
 	}
 
-
-	public CarreAvecRond2() {
-		setBackground(Color.GREEN);
-	}
 
 	public Dimension getPreferredSize() {
 		return new Dimension(300, 300);
