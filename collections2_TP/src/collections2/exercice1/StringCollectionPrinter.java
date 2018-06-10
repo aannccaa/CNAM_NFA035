@@ -118,6 +118,8 @@ public class StringCollectionPrinter {
 		afficheCollForEach(ac);
 		afficheCollForEach(sc);
 		
+		System.out.println(ac);
+		
 		//Q2
 		ArrayList<String> al = new ArrayList<String>();
 		al.add("coco");

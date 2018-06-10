@@ -45,7 +45,6 @@ public class Carte {
 			return false;
 		} else if (obj == this) {
 			return true;
-
 		} else {
 			Carte c = (Carte) obj;
 			return (c.valeur == this.valeur && c.couleur == this.couleur);
