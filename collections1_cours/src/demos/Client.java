@@ -1,3 +1,4 @@
+package demos;
 
 import java.util.ArrayList;
 import java.util.Collections; // pour le tri

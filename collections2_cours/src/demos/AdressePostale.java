@@ -1,3 +1,4 @@
+package demos;
 
 public class AdressePostale /* implements Comparable<AdressePostale> */ {
 	private int numero;

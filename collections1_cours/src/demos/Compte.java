@@ -1,3 +1,4 @@
+package demos;
 
 public class Compte implements Comparable<Compte> {
 	/* Variables d'instance */
