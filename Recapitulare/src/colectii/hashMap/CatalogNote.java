@@ -36,10 +36,12 @@ public class CatalogNote {
 		for (int i = 1; i < elevi.size(); i++) {
 			Elev elev = elevi.get(i);
 			double notaMinElev = elev.getMinMaterie(numeMaterie);
-			if()
-			
+			if (notaCeaMaiSlaba == notaMinElev) {
+				eleviSlabi.add(elev);
+			} else {
+				break;// termina bucla
+			}
 		}
-		
 		return eleviSlabi;
 	}
 }
