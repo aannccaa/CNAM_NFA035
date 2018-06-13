@@ -1,10 +1,12 @@
 package banque;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 // import java.util.Map.Entry;
 
@@ -111,42 +113,59 @@ public class Banque {
 	 */
 	private Compte getCompteDeNum(int n) {
 		return this.tous.get(new Integer(n));
+
+		// variante, ca marcherait aussi en passant directement "n" comme param (il y a
+		// une
+		// transforamtion auto entre la primitive "int" et la classe associée "Integer")
+		// return this.tous.get(n);
 	}
 
 	/* Bilan (solde total) des comptes de la banque */
 	public double getSoldeTous() {
 		double solde = 0;
-		Collection<Compte> comptes = this.tous.values();
+		Collection<Compte> comptes = this.tous.values(); // toutes les valeurs (Collection<Compte>) de la map;
 		for (Compte c : comptes) {
 			solde = solde + c.getSolde();
 		}
-		// Collection<Compte> comptes = this.tous.values();
-		// for(Entry<Integer, Compte> entry : this.tous.entrySet()) {
-		// Compte c = entry.getValue();
-		// Integer numero = entry.getKey();
-		// solde = solde + c.getSolde();
-		// }
+		return solde;
+	}
 
-		// for(Integer numero : this.tous.keySet()) {
-		// Compte c = this.tous.get(numero);
-		// solde = solde + c.getSolde();
-		// }
+	/* variante 1 Bilan (solde total) des comptes de la banque */
+	public double getSoldeTous_variante1() {
+		double solde = 0;
+		Set<Entry<Integer, Compte>> entries = this.tous.entrySet(); // associations (set de paires k, v) dans la map
+		for (Entry<Integer, Compte> entry : entries) {
+			Compte c = entry.getValue();
+			// Integer numero = entry.getKey();
+			solde = solde + c.getSolde();
+		}
+		return solde;
+	}
+
+	/* variante 2 Bilan (solde total) des comptes de la banque */
+	public double getSoldeTous_variante2() {
+		double solde = 0;
+		Set<Integer> numeros = this.tous.keySet(); // les clefs de la mappe
+		for (Integer numero : numeros) {
+			Compte c = this.tous.get(numero);
+			solde = solde + c.getSolde();
+		}
 		return solde;
 	}
 
 	public double bilan() {
 		double res = 0;
-		Set<Map.Entry<Integer, Compte>> s = this.tous.entrySet();
+		Set<Map.Entry<Integer, Compte>> s = this.tous.entrySet();// associations (set de paires k, v) dans la map
 		for (Map.Entry<Integer, Compte> asso : s) {
 			res = res + asso.getValue().getSolde();
 		}
 		return res;
 	}
-	
+
 	public void suprimerComptesSoldeNull() {
-		Set<Map.Entry<Integer, Compte>> s = tous.entrySet();
+		Set<Map.Entry<Integer, Compte>> s = tous.entrySet();// associations (set de paires k, v) dans la map
 		Iterator<Map.Entry<Integer, Compte>> its = s.iterator();
-		while(its.hasNext()) {
+		while (its.hasNext()) {
 			if (its.next().getValue().getSolde() == 0) {
 				its.remove();
 			}
