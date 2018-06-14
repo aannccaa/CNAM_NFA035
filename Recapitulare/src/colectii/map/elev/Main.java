@@ -27,13 +27,15 @@ public class Main {
 		List<Nota> mediiClasa = c5B.getMedii();
 		mediiClasa.sort(null);// foloseste ordinea din clasa Nota (elev, materie, nota, crescator)
 		System.out.println(mediiClasa.toString());
-		
-		// implementez intr-o clasa anonima Comparator<Nota> pe care-l pasez ca param la sort.
-		// comparatorul ordoneaza descrescator dupa nota si crescator dupa elev / materie
+
+		// implementez intr-o clasa anonima Comparator<Nota> pe care-l pasez ca param la
+		// sort.
+		// comparatorul ordoneaza descrescator dupa nota si crescator dupa elev /
+		// materie
 		mediiClasa.sort(new Comparator<Nota>() {
 			public int compare(Nota n1, Nota n2) {
 				// minus schimba ordinea (crescator -> descrescator)
-				int result = - new Double(n1.nota).compareTo(n2.nota);
+				int result = -new Double(n1.nota).compareTo(n2.nota);
 				if (result == 0) {
 					result = n1.numeElev.compareTo(n2.numeElev);
 				}
@@ -46,5 +48,15 @@ public class Main {
 
 		System.out.println(mediiClasa.toString());
 
+		// Sterge notele de la franceza
+		// sterg in ordine inversa, ca sa nu fiu afectat de deplasarea catre zero a
+		// elementelor de deasupra elementului sters
+		for (int i = mediiClasa.size() - 1; i >= 0; i--) {
+			Nota notaCurenta = mediiClasa.get(i);
+			if (notaCurenta.materie.equals("franceza")) {
+				mediiClasa.remove(i);
+			}
+		}
+		System.out.println(mediiClasa.toString());
 	}
 }
