@@ -1,6 +1,6 @@
-package colectii.map;
+package colectii.map.strada;
 
-public class Main {
+public class MainStrada {
 
 	public static void main(String[] args) {
 		Strada alesia = new Strada("Alésia");

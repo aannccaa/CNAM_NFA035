@@ -1,4 +1,4 @@
-package colectii.map;
+package colectii.map.strada;
 
 public class Persoana {
 	private String nume;

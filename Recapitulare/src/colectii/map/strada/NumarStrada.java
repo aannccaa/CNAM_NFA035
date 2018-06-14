@@ -1,4 +1,4 @@
-package colectii.map;
+package colectii.map.strada;
 
 import java.util.ArrayList;
 import java.util.HashSet;
