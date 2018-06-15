@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Elev {
+	// final = nu se mai modifica variabilele de instanta, si se pot accesa fara
+	// getteri.
 	public final String nume;
 	// map de materie, lista de note
 	public final Map<String, List<Double>> note;
@@ -20,6 +22,7 @@ public class Elev {
 	}
 
 	public void addNota(String materie, double nota) {
+		// map.get(key) => map.values
 		List<Double> noteMaterie = this.note.get(materie);
 		// daca lista nu exista
 		if (noteMaterie == null) {
@@ -62,6 +65,37 @@ public class Elev {
 		return result;
 	}
 
+	public List<Double> getNote(String materie) {
+		List<Double> result = this.note.get(materie);
+		return result;
+	}
+
+	public double getMedieMaterie2(String materie) {
+		List<Double> note = this.getNote(materie);
+		if (note == null || note.size() == 0) {
+			return 0;
+		}
+		double sumaNote = 0;
+		for (Double n : note) {
+			sumaNote = sumaNote + n;
+		}
+		return sumaNote / note.size();
+	}
+
+	public List<Nota> getMedii() {
+		List<Nota> result = new ArrayList<>();
+
+		for (Map.Entry<String, List<Double>> perecheMaterieSiNote : this.note.entrySet()) {
+			String materie = perecheMaterieSiNote.getKey();
+			List<Double> noteMaterie = perecheMaterieSiNote.getValue();
+			double medie = Util.getMedia(noteMaterie);
+			Nota m = new Nota(medie, this.nume, materie);
+			result.add(m);
+		}
+
+		return result;
+	}
+
 	public List<Nota> getNoteMaterie(String materie) {
 		List<Nota> result = new ArrayList<>();
 		// obtin lista de note / materie
@@ -74,17 +108,22 @@ public class Elev {
 		return result;
 	}
 
-	public List<Nota> getMedii() {
-		List<Nota> result = new ArrayList<>();
-		
-		for (Map.Entry<String, List<Double>> perecheMaterieSiNote : this.note.entrySet()) {
-			String materie = perecheMaterieSiNote.getKey();
-			List<Double> noteMaterie = perecheMaterieSiNote.getValue();
-			double medie = Util.getMedia(noteMaterie);
-			Nota m = new Nota(medie, this.nume, materie);
-			result.add(m);
+	public int getNumarNote(String materie) {
+		List<Double> noteMaterie = this.getNote(materie);
+		if (noteMaterie == null) {
+			return 0;
 		}
-
-		return result;
+		return noteMaterie.size();
 	}
+	
+	public void stergePrimaNotaGasita(double nota, String materie) {
+		List<Double> noteMaterie = this.note.get(materie);
+		for(int i=noteMaterie.size()-1; i>=0; i++) {
+			if(noteMaterie.get(i) == nota) {
+			noteMaterie.remove(i);
+			break;
+			}
+		}
+	}
+
 }

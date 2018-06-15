@@ -22,19 +22,22 @@ public class Main {
 
 		List<Nota> medii = toto.getMedii();
 		for (Nota nota : medii) {
+			// afiseaza nume, media/materie + nume materie
 			System.out.println(nota.toString(true, true));
 		}
+
 		List<Nota> mediiClasa = c5B.getMedii();
-		mediiClasa.sort(null);// foloseste ordinea din clasa Nota (elev, materie, nota, crescator)
+		mediiClasa.sort(null);// null <=>foloseste ordinea din clasa Nota (elev, materie, nota, crescator)
 		System.out.println(mediiClasa.toString());
 
-		// implementez intr-o clasa anonima Comparator<Nota> pe care-l pasez ca param la
+		// implementez intr-o clasa anonima Comparator<Nota> pe care o pasez ca param la
 		// sort.
 		// comparatorul ordoneaza descrescator dupa nota si crescator dupa elev /
 		// materie
 		mediiClasa.sort(new Comparator<Nota>() {
 			public int compare(Nota n1, Nota n2) {
-				// minus schimba ordinea (crescator -> descrescator)
+				// minus schimba ordinea (crescator -> descrescator) in methoda sort care
+				// foloseste comparatorul
 				int result = -new Double(n1.nota).compareTo(n2.nota);
 				if (result == 0) {
 					result = n1.numeElev.compareTo(n2.numeElev);
@@ -47,6 +50,10 @@ public class Main {
 		});
 
 		System.out.println(mediiClasa.toString());
+		
+		
+		System.out.println(c5B.getEleviSortatiDupaMedie("franceza"));
+		
 
 		// Sterge notele de la franceza
 		// sterg in ordine inversa, ca sa nu fiu afectat de deplasarea catre zero a
