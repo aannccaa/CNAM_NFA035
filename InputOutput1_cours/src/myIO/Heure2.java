@@ -43,7 +43,7 @@ public class Heure2 {
 		estChiffre = estChiffre(ch);
 
 		if (estChiffre) {
-			h = h * 10 + Character.getNumericValue(c);
+			h = h * 10 + Character.getNumericValue(ch);
 			result = result + h;
 			ch = readChar(fr);
 		}

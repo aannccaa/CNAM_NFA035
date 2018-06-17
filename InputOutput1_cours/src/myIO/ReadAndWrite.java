@@ -8,6 +8,7 @@ import java.io.StringWriter;
 
 public class ReadAndWrite {
 
+	// lecture flux avec FileReader / écriture avec FileWriter
 	public static String copyFileContentInOtherFile(FileReader fr, FileWriter fw) throws IOException {
 		String texte = "";
 		int c = fr.read();
@@ -20,15 +21,15 @@ public class ReadAndWrite {
 		return texte;
 	}
 
+	// lecture flux avec StringReader / écriture avec StringWriter
 	public static String copyStringFromReader(StringReader sr, StringWriter sw) throws IOException {
 		int c = sr.read();
-		String texte = "";
 		while (c != -1) {
 			char ch = (char) c;
 			sw.write(ch);
-			texte = sw.toString();
 			c = sr.read();
 		}
+		String texte = sw.toString();
 		return texte;
 	}
 

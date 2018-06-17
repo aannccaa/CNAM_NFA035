@@ -1,32 +1,32 @@
 package myIO;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mot {
 
-	public static List<String> getMots(StringReader sr) throws IOException {		
+	public static List<String> getMots(Reader r) throws IOException {
 		boolean dansMot = false;
 		String motCourrant = "";
 
 		List<String> mots = new ArrayList<>();
 		int c;
 		do {
-			c = sr.read();
-			char ch = (char) 0;
+			c = r.read();
+			char ch = (char) c;
 			boolean isLetter;
 			if (c == -1) { // reader fini
 				isLetter = false;
 			} else {
-				ch = (char) c;
 				isLetter = Character.isLetter(ch);
 			}
 
 			if (dansMot) {
 				if (isLetter) {
-					motCourrant += ch;
+					motCourrant += ch; // echivalent cu motCourrant = motCourrant + ch;
 				} else {
 					mots.add(motCourrant);
 					motCourrant = "";
@@ -42,10 +42,9 @@ public class Mot {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String s = "je sais: tu n'est pas là bas";
+		String s = "je sais: tu n'es pas là bas";
 		StringReader sr = new StringReader(s);
 		List<String> mots = getMots(sr);
 		System.out.println(mots.toString());
 	}
-
 }
