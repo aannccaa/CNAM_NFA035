@@ -32,7 +32,7 @@ public class LireCercles {
 			t.nextToken();
 			System.out.println("lu cercle " + cx + "," + cy + "," + r);
 			if (t.ttype != ')')
-				syntaxError("'(' attendue");
+				syntaxError("')' attendue");
 			t.nextToken();
 		}
 	}
