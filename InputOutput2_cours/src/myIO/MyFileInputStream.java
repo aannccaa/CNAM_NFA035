@@ -12,8 +12,7 @@ public class MyFileInputStream {
 		while (c != -1) {
 			nb++;
 			c = input.read();
-		}
-		
+		}	
 		System.out.println("nb octets: " + nb);
 	}
 
