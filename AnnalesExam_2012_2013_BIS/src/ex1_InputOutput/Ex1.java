@@ -1,4 +1,4 @@
-package ex1;
+package ex1_InputOutput;
 
 import java.io.BufferedReader;
 import java.io.File;
