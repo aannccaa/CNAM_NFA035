@@ -16,16 +16,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 
-class DataClass implements Serializable {
-	public int id;
-	public String code;
-	public String libelle;
-
-	public String toString() {
-		return String.format("%d %s %s", id, code, libelle);
-	}
-}
-
 public class MyInputStreamReader_exemple_Net {
 
 	public static void main(String[] args) throws IOException {

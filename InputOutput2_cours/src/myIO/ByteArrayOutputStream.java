@@ -1,29 +1,20 @@
 package myIO;
 //http://thecodersbreakfast.net/index.php?post/2012/01/15/java-io-explique-simplement
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
+// import java.io.BufferedReader;
+// import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
+// import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
+// import java.io.InputStream;
+// import java.io.InputStreamReader;
+// import java.io.LineNumberReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.nio.charset.Charset;
+// import java.nio.charset.Charset;
 
-
-class DataClass implements Serializable {
-	public int id;
-	public String code;
-	public String libelle;
-	public String toString() {
-		return String.format("%d %s %s", id, code, libelle);
-	}
-}
 
 public class ByteArrayOutputStream {
 
@@ -62,6 +53,9 @@ public class ByteArrayOutputStream {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			ois.close();
 		}
 	}
 }
