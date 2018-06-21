@@ -1,4 +1,8 @@
 package ex3_Swing;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Exercice3 5 points 
 Un bout d’interface pour un logiciel de gestion des inscriptions. On suppose 
@@ -42,24 +46,32 @@ public class CoursCnam {
 	private String codeUE;
 	private int nombreHeures;
 
-	/**
-	 * Methode statique fabrique. Retourne le tableau de tous les cours
-	 * disponibles.
-	 * 
-	 * @return
-	 */
-	public static CoursCnam[] creerLesCours() {
-		// ...
-		
-		CoursCnam[] result = new CoursCnam[3];
-		return result;
-	}
-
 	public CoursCnam(String codeUE, int nombreHeures) {
 		/* ... */
 		this.codeUE = codeUE;
 		this.nombreHeures = nombreHeures;
 	}
+
+	/**
+	 * Methode statique fabrique. Retourne le tableau de tous les cours disponibles.
+	 * 
+	 * @return
+	 */
+	public static CoursCnam[] creerLesCours() {
+		// ...
+		CoursCnam nfa031 = new CoursCnam("NFA031", 60);
+		CoursCnam nfa032 = new CoursCnam("NFA032", 50);
+		CoursCnam nfa035 = new CoursCnam("NFA035", 48);
+		CoursCnam[] result = { nfa031, nfa032, nfa035 };
+		return result;
+	}
+
+	public void addCours(String codeUE, int nombreHeures) {
+		List<CoursCnam> listeCours = new ArrayList<>();
+		CoursCnam c = new CoursCnam(codeUE, nombreHeures);
+		listeCours.add(c);
+	}
+
 
 	public String getCodeUE() {
 		return this.codeUE;

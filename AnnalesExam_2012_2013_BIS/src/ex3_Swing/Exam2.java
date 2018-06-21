@@ -1,11 +1,21 @@
 package ex3_Swing;
 
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /*
 Question3.1 5 points 
@@ -61,6 +71,8 @@ public class Exam2 {
 	private JComboBox ueListe = new JComboBox();
 	private JTextField heuresChamp = new JTextField(10);
 	private JFrame frame = new JFrame("formulaire");
+	private JLabel ueLabel = new JLabel("Unité d'enseignement: ");
+	private JLabel heuresLabel = new JLabel("Heures: ");
 
 	public Exam2() {
 		placeComposants();
@@ -92,23 +104,64 @@ public class Exam2 {
 	}
 
 	private void activeComposants() { // À ÉCRIRE
-		this.ueListe.addActionListener(EventHandler.create(ActionListener.class, this, "afficherHeures"));
+		// set model
+		ComboBoxModel<CoursCnam[]> comboBoxModel = new DefaultComboBoxModel(CoursCnam.creerLesCours());
+		ueListe.setModel(comboBoxModel);
+
+		// add action listener pour la selection de UE dans le combo:
+
+		// // variante 1 add action listener (EventHandler)
+		// this.ueListe.addActionListener(EventHandler.create(ActionListener.class,
+		// this, "selectUE"));
+
+		// variante 2 add action listener (lambda expression)
+		ueListe.addActionListener((e -> selectUE()));
+
+		// // variante 3 add action listener (classe interne annonime)
+		// ueListe.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// selectUE();
+		// }
+		// });
 	}
 
 	/**
 	 * Place les composants (NE PAS ÉCRIRE !) ∗/
 	 */
-	private void placeComposants(){
+	private void placeComposants() {
 		// ...
-		
+		heuresChamp.setEditable(false);
+		Container panel = frame.getContentPane();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridwidth = 1;
+		panel.add(this.ueLabel, c);
+		panel.add(this.ueListe, c);
+		c = new GridBagConstraints();
+		c.gridy = 1;
+		panel.add(this.heuresLabel, c);
+		c.gridx = 1;
+		panel.add(this.heuresChamp, c);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	public String afficherHeures(){
-		return this.getHeuresChamp().getText();
+
+	public void selectUE() {
+		CoursCnam ue = (CoursCnam) ueListe.getSelectedItem();
+		this.heuresChamp.setText("" + ue.getNombreHeures());
 	}
 
 	public static void main(String[] args) {
 		// Lance le programme:
 		// À ÉCRIRE
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				new Exam2();
+			}
+		});
+
 	}
 }

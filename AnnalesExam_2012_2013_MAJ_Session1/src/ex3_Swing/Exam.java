@@ -1,8 +1,14 @@
 package ex3_Swing;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.text.JTextComponent;
 
 /*
 Exercice 3 Swing, 5 points 
@@ -58,13 +64,52 @@ Question 3.2 1 point
 Dans les indications de la question précédente, on vous 
 donne des méthodes de JComponent et non de JTextField. 
 Pourquoi cela fonctionne-t-il?
+	=> Réponse: parce que JTextField hérite de JTextComponent qui hérite de JComponent
+	public class JTextField extends JTextComponent
+	public abstract class JTextComponent extends JComponent 
 
  */
 
 public class Exam {
 	private JTextField champTexte = new JTextField(20);
 	private JFrame frame = new JFrame("une saisie");
+	int nbCharControl = 8;
 	// ....
+
+	public Exam() {
+		mettreEnPage();
+		activate();
+	}
+
+	/**
+	 * @return the champTexte
+	 */
+	public JTextField getChampTexte() {
+		return champTexte;
+	}
+
+	/**
+	 * @param champTexte
+	 *            the champTexte to set
+	 */
+	public void setChampTexte(JTextField champTexte) {
+		this.champTexte = champTexte;
+	}
+
+	/**
+	 * @return the frame
+	 */
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	/**
+	 * @param frame
+	 *            the frame to set
+	 */
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
 
 	public void mettreEnPage() {
 		// S’occupe de "mettre en page"
@@ -72,6 +117,37 @@ public class Exam {
 		// (les ajoute à la JFrame ... )
 		// ne pas écrire.
 		// . . . }
+		frame.add(this.champTexte);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	private void activate() {
+		// // variante 1 add action listener (EventHandler)
+		// this.champTexte.addActionListener(EventHandler.create(ActionListener.class,
+		// this, "fixColor"));
+
+		// variante 2 add action listener (lambda expression)
+		this.champTexte.addActionListener(e -> fixColor());
+
+		// // variante 3 add action listener (classe interne annonime)
+		// this.champTexte.addActionListener(new ActionListener() {
+		//
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// fixColor();
+		// }
+		// });
+	}
+
+	public void fixColor() {
+		String s = this.getChampTexte().getText();
+		if (s.length() <= this.nbCharControl) {
+			this.getChampTexte().setForeground(Color.GREEN);
+		} else {
+			this.getChampTexte().setForeground(Color.RED);
+		}
 	}
 
 	public static void main(String args[]) {
