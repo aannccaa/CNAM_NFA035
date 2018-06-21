@@ -1,4 +1,4 @@
-package ex2.Q2;
+package ex2_InputOutput;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -21,15 +21,15 @@ Le label du lien et son URL sont considerés comme du texte quelconque, avec com
 seule condition que le label ne peut pas contenir le caractere '|' et que l’URL n’a 
 pas le droit de contenir le caractere ’]’.
 On considere la classe java (que vous n’avez pas à ecrire).
-class Lien {
+class Q2_2_Lien {
 	private String label;
 	private String url;
-	public Lien(String label, String url)  { . . . }
+	public Q2_2_Lien(String label, String url)  { . . . }
 	public String getLabel() { . . . }
 	public String getUrl() { . . . }
 }
 Ecrivez la méthode
-public List<Lien> listerLiens(Reader r) throws IOException {
+public List<Q2_2_Lien> listerLiens(Reader r) throws IOException {
 . . .
 }
 Qui cree et retourne la liste des liens trouvés dans le flux lu par r.
@@ -37,11 +37,11 @@ Vous supposerez que le fichier est correctement ecrit (on ne vous demande
 pas de gérer les erreurs). 
  */
 
-public class Lien {
+public class Q2_2_Lien {
 	private String label;
 	private String url;
 
-	public Lien(String label, String url) {
+	public Q2_2_Lien(String label, String url) {
 		this.label = label;
 		this.url = url;
 	}
@@ -54,8 +54,8 @@ public class Lien {
 		return this.url;
 	}
 
-	public List<Lien> listerLiens(Reader r) throws IOException {
-		List<Lien> result = new ArrayList<>();
+	public List<Q2_2_Lien> listerLiens(Reader r) throws IOException {
+		List<Q2_2_Lien> result = new ArrayList<>();
 
 		int c = 0;
 		char ch = (char) c;
@@ -73,7 +73,7 @@ public class Lien {
 			while (ch != ']') {
 				url = url + ch;
 			}
-			Lien lien = new Lien(label, url);
+			Q2_2_Lien lien = new Q2_2_Lien(label, url);
 			result.add(lien);
 		}
 		return result;
@@ -91,8 +91,8 @@ public class Lien {
 	 * de rencontrer un | puis un ].
 	 */
 
-	public List<Lien> listerLiens_cor1(Reader r) throws IOException {
-		List<Lien> result = new ArrayList<>();
+	public List<Q2_2_Lien> listerLiens_cor1(Reader r) throws IOException {
+		List<Q2_2_Lien> result = new ArrayList<>();
 		String label = "";
 		String url = "";
 		int c = 0;
@@ -108,7 +108,7 @@ public class Lien {
 			while ((c = r.read()) != ']' && c != -1) {
 				url = url + (char) c;
 			}
-			Lien lien = new Lien(label, url);
+			Q2_2_Lien lien = new Q2_2_Lien(label, url);
 			result.add(lien);
 		}
 		return result;
@@ -121,7 +121,7 @@ public class Lien {
 	 * (evidemment, si c’est ce que vous avez ècrit, c’est très bien). .
 	 */
 
-	public List<Lien> listerLiens_cor2(Reader r) throws IOException {
+	public List<Q2_2_Lien> listerLiens_cor2(Reader r) throws IOException {
 		// On a 3 états, qu’on peut identifier par trois valeurs
 		// On utilise des constantes pour ameliorer
 		// la lisibilité du code .
@@ -129,7 +129,7 @@ public class Lien {
 		final int DANS_LABEL = 1;
 		final int DANS_URL = 2;
 
-		List<Lien> result = new ArrayList<>();
+		List<Q2_2_Lien> result = new ArrayList<>();
 		int etat = DANS_TEXTE;
 		String label = "";
 		String url = "";
@@ -146,7 +146,7 @@ public class Lien {
 				// ca buggue : p o u r q u oi ?
 			} else if (etat == DANS_URL) {
 				if (c == ']') {
-					Lien lien = new Lien(label, url);
+					Q2_2_Lien lien = new Q2_2_Lien(label, url);
 					result.add(lien);
 					label = "";
 					url = "";
@@ -164,23 +164,23 @@ public class Lien {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Lien lien;
+		Q2_2_Lien lien;
 		Reader r;
 		String s;
 		s = "[cours de NFA035|http://www.cnam.fr/nfa035]";
 		r = new StringReader(s);
-		lien = new Lien("", "");
-		List<Lien> liens1 = lien.listerLiens_cor1(r);
-		for (Lien l : liens1) {
+		lien = new Q2_2_Lien("", "");
+		List<Q2_2_Lien> liens1 = lien.listerLiens_cor1(r);
+		for (Q2_2_Lien l : liens1) {
 			System.out.println(" [ " + l.getLabel() + " | " + l.getUrl() + " ] ");
 		}
 		r.close();
 
 		s = "[cours de NFA032|http://www.cnam.fr/nfa032]";
 		r = new StringReader(s);
-		Lien lien2 = new Lien("", "");
-		List<Lien> liens2 = lien2.listerLiens_cor2(r);
-		for (Lien l : liens2) {
+		Q2_2_Lien lien2 = new Q2_2_Lien("", "");
+		List<Q2_2_Lien> liens2 = lien2.listerLiens_cor2(r);
+		for (Q2_2_Lien l : liens2) {
 			System.out.println(" [ " + l.getLabel() + " | " + l.getUrl() + " ] ");
 		}
 		r.close();

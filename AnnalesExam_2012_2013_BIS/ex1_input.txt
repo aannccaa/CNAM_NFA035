@@ -1,0 +1,18 @@
+* Programmation
+* a *
+La programmation c’est bien. Ça ouvre l’esprit.
+** Langages de programmation Les langages ...
+*** Langage C
+Le langage C c’est bien car ça forme la jeunesse.
+*** Langage Java
+Le langage Java ...
+** Compilation
+La compilation c’est mal connu.
+* Système
+Le système c’est bien aussi. 
+** Unix
+Unix c’est bien
+** Windows
+Windows c’est moins bien
+** Mac
+Mac c’est pas mal

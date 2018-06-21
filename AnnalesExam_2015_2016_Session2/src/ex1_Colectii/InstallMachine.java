@@ -1,4 +1,4 @@
-package ex1;
+package ex1_Colectii;
 
 /*
 Question 1.1 (1 point)

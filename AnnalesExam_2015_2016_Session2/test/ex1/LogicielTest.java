@@ -11,8 +11,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import ex1.InstallMachine;
-import ex1.Logiciel;
+import ex1_Colectii.InstallMachine;
+import ex1_Colectii.Logiciel;
 
 public class LogicielTest {
 	public static Logiciel jdk6 = new Logiciel("JDK", 6);

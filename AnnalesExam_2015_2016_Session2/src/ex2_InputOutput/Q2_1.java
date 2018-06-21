@@ -1,4 +1,4 @@
-package ex2;
+package ex2_InputOutput;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;

@@ -1,4 +1,4 @@
-package ex1;
+package ex1_Colectii;
 
 import java.util.HashSet;
 import java.util.Set;

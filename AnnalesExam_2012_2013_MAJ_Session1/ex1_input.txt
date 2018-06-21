@@ -1,0 +1,4 @@
+bonjour ,␣comment 
+vas␣tu␣vous 
+Bien,␣et␣vous␣? 
+bien

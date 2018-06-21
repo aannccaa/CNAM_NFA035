@@ -1,4 +1,4 @@
-package ex2;
+package ex2_Colectii;
 /*
 Exercice 2 collections (9 points)
 On souhaite modéliser un répertoire téléphonique formé d’un ensemble de contacts. 

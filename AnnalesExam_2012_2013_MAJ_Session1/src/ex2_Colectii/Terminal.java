@@ -1,4 +1,4 @@
-package ex2;
+package ex2_Colectii;
 
 import java.io.*;
 public class Terminal{    
