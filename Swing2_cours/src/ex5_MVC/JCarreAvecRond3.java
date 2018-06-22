@@ -48,7 +48,6 @@ public class JCarreAvecRond3 extends JPanel implements CarreAvecRondModeleListen
 
 	public void setCouleur(Color couleurCercle) {
 		this.modele.setCouleur(couleurCercle);
-
 	}
 
 	public Color getCouleurCercle() {
@@ -65,7 +64,6 @@ public class JCarreAvecRond3 extends JPanel implements CarreAvecRondModeleListen
 
 	public void setCenterX(int centreX) {
 		this.modele.setCenterX(centreX);
-
 	}
 
 	public void setCentreY(int centreY) {

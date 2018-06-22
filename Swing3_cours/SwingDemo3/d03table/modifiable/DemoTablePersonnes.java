@@ -22,45 +22,48 @@ import d03table.data.Personnes;
  * @author rosmord
  */
 public class DemoTablePersonnes {
-    JFrame frame= new JFrame("Un tableau");
-    JTable table= new JTable();
-    JButton addPersonneButton= new JButton("+");
-    JButton removePersonneButton= new JButton("-");
-    
-    public DemoTablePersonnes() {
-        model = new PersonnesTableModel(Personnes.getList());
-        // Cette ligne évite le bug en cas de suppression lors d'une 
-        // édition.
-        // voir http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6349059
-        // et http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4709394
-        table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-        table.setModel(model);
-        frame.setLayout(new BorderLayout());
-        
-        addPersonneButton.addActionListener(e-> addPersonne());
-        removePersonneButton.addActionListener(e-> enleverPersonne());
-        JToolBar outils= new JToolBar();
-        outils.setFloatable(false);
-        outils.add(addPersonneButton);
-        outils.add(removePersonneButton);
-        frame.add(new JScrollPane(table), BorderLayout.CENTER);        
-        frame.add(outils,BorderLayout.SOUTH);
-        frame.setVisible(true);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    private final PersonnesTableModel model;
-    
-     public void addPersonne() {       
-        Personne p = new Personne(100, "(nom)", "(prenom)");
-        model.ajouterPersonne(p);
-    }
+	JFrame frame = new JFrame("Un tableau");
+	JTable table = new JTable();
+	JButton addPersonneButton = new JButton("+");
+	JButton removePersonneButton = new JButton("-");
+	private final PersonnesTableModel model;
 
-    public void enleverPersonne() {      
-        int ligne = table.getSelectedRow();
-        if (ligne != -1) {
-            model.supprimerPersonne(ligne);
-        }
-    }
- 
+	public DemoTablePersonnes() {
+		model = new PersonnesTableModel(Personnes.getList());
+		// Cette ligne évite le bug en cas de suppression lors d'une
+		// édition.
+		// voir http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6349059
+		// et http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4709394
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		table.setModel(model);
+		frame.setLayout(new BorderLayout());
+
+		addPersonneButton.addActionListener(e -> addPersonne());
+		removePersonneButton.addActionListener(e -> enleverPersonne());
+		JToolBar outils = new JToolBar();
+		outils.setFloatable(false);
+		outils.add(addPersonneButton);
+		outils.add(removePersonneButton);
+		frame.add(new JScrollPane(table), BorderLayout.CENTER);
+		frame.add(outils, BorderLayout.SOUTH);
+		frame.setVisible(true);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void addPersonne() {
+		Personne p = new Personne(100, "(nom)", "(prenom)");
+		model.ajouterPersonne(p);
+	}
+
+	public void enleverPersonne() {
+		// get the index of the first selected row, -1 if no row is selected:
+		int ligne = table.getSelectedRow();
+		// if a row is selected:
+		if (ligne != -1) {
+			// delete
+			model.supprimerPersonne(ligne);
+		}
+	}
+
 }

@@ -17,22 +17,21 @@ import javax.swing.event.DocumentListener;
  */
 public class Main {
 
-    JFormulaireSecret demo;
+	JFormulaireSecret demo;
 
-    public Main() {
-        // Création des objets
-        demo = new JFormulaireSecret();
-        // Configuration des champs
-        demo.getAffichageField().setEditable(false);
-        // Mise en place du DocumentListener.
-        demo.getMonChampTexte().getDocument().addDocumentListener(
-                new MonDocListener(demo));
-        // On rend le tout visible.
-        demo.setVisible(true);
-        demo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+	public Main() {
+		// Création des objets
+		demo = new JFormulaireSecret();
+		// Configuration des champs
+		demo.getAffichageField().setEditable(false);
+		// Mise en place du DocumentListener (par getDocument().addDocumentListener)
+		demo.getMonChampTexte().getDocument().addDocumentListener(new MonDocListener(demo));
+		// On rend le tout visible.
+		demo.setVisible(true);
+		demo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Main());
-    }
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> new Main());
+	}
 }

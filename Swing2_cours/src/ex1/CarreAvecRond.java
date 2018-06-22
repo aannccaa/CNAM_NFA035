@@ -27,6 +27,8 @@ public class CarreAvecRond extends JPanel {
 		return new Dimension(300, 300);
 	}
 
+	// paintComponent on le définit comme "protected", mais c’est EDT (Event Dispatch Thread) qui l'appelle
+	//  g = surface de dessin de type Graphics
 	protected void paintComponent(Graphics g) {
 		// effacement de l'ancien dessin:
 		// supper designe la classe parente donc JPanel,
@@ -38,6 +40,14 @@ public class CarreAvecRond extends JPanel {
 		// si on aurait utilisé setForeground():
 		g.setColor(couleurCercle);
 		// on desine un cercle:
+		/*
+		Fills an oval bounded by the specified rectangle with the current color.
+		Parameters:
+		x = the x coordinate of the upper left corner of the oval to be filled.
+		y = the y coordinate of the upper left corner of the oval to be filled.
+		width = the width of the oval to be filled.
+		height = the height of the oval to be filled.
+		 */
 		g.fillOval(centreX - rayon, centreY - rayon, rayon * 2, rayon * 2);
 	}
 

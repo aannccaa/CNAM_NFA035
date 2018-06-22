@@ -19,36 +19,34 @@ import d03table.data.Personne;
  */
 public class PersonnesTableModelReadOnly extends AbstractTableModel {
 
-    private List<Personne> personnes = new ArrayList<>();
+	private List<Personne> personnes;
 
-    public PersonnesTableModelReadOnly(Collection<Personne> personnes ) {
-        this.personnes= new ArrayList<>(personnes);
-    }
+	public PersonnesTableModelReadOnly(Collection<Personne> personnes) {
+		this.personnes = new ArrayList<>(personnes);
+	}
 
-    
-    @Override
-    public int getRowCount() {
-        return personnes.size();
-    }
+	@Override
+	public int getRowCount() {
+		return personnes.size();
+	}
 
-    @Override
-    public int getColumnCount() {
-        return 3;
-    }
+	@Override
+	public int getColumnCount() {
+		return 3;
+	}
 
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        Personne p = personnes.get(rowIndex);
-        switch (columnIndex) {
-            case 0:
-                return p.getId();
-            case 1:
-                return p.getNom();
-            case 2:
-                return p.getPrenom();
-            default:
-                return "";
-        }
-    }
-
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		Personne p = personnes.get(rowIndex);
+		switch (columnIndex) {
+		case 0:
+			return p.getId();
+		case 1:
+			return p.getNom();
+		case 2:
+			return p.getPrenom();
+		default:
+			return "";
+		}
+	}
 }

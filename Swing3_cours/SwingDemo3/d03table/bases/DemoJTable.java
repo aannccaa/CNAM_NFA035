@@ -12,24 +12,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 public class DemoJTable {
-    JFrame frame= new JFrame("Un tableau");
-    JTable table= new JTable(0, 3);
+	JFrame frame = new JFrame("Un tableau");
+	JTable table = new JTable(0, 3);// 0 lignes, 3 colonnes
 
-    public DemoJTable() {       
-        DefaultTableModel defaultModel= (DefaultTableModel) table.getModel();
-        defaultModel.setColumnIdentifiers(new String [] {"col1", "col2", "col3"});
-        defaultModel.addRow(new String[] {"un", "deux", "trois"});        
-        defaultModel.addRow(new String[] {"one", "two", "three"});  
-        frame.add(new JScrollPane(table));        
-        frame.setVisible(true);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    
-    
-   
-    
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new DemoJTable());
-    }
+	public DemoJTable() {
+		DefaultTableModel defaultModel = (DefaultTableModel) table.getModel();
+		defaultModel.setColumnIdentifiers(new String[] { "col1", "col2", "col3" });
+		defaultModel.addRow(new String[] { "un", "deux", "trois" });
+		defaultModel.addRow(new String[] { "one", "two", "three" });
+		frame.add(new JScrollPane(table));
+		frame.setVisible(true);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> new DemoJTable());
+	}
 }

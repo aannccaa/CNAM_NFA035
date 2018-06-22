@@ -34,6 +34,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class CreateurUtilisateur {
 	private JTextField identifiantField = new JTextField(10);
@@ -44,6 +46,30 @@ public class CreateurUtilisateur {
 	private JLabel identifiantLabel = new JLabel("Identifiant: ");
 	private JLabel motDePasse1Label = new JLabel("mot de passe: ");
 	private JLabel motDePasse2Label = new JLabel("répéter mot de passe: ");
+
+	/*
+	 * Pour la vé́rification des champs ≪ à la volée ≫ on va utiliser la technique
+	 * vue en cours, en attachant un DocumentListener aux divers champs. Pour créer
+	 * le DocumentListener, on peut utiliser une classe interne comme ci-dessous. On
+	 * ne peut pas utiliser de lambda (car un DocumentListener a plusieurs
+	 * méthodes); on peut aussi utiliser un EventHandler (assez pratique, toutes les
+	 * mé́thodes feront la même chose).
+	 */
+	// classe interne: le documentListener:
+	private class MyDocListener implements DocumentListener {
+		public void changedUpdate(DocumentEvent e) {
+			/* RIEN */}
+
+		public void insertUpdate(DocumentEvent e) {
+			verifBouton();
+		}
+
+		public void removeUpdate(DocumentEvent e) {
+			verifBouton();
+		}
+	}
+
+	private MyDocListener docListener = new MyDocListener();
 
 	public CreateurUtilisateur() {
 		mettreEnPage();
@@ -61,7 +87,7 @@ public class CreateurUtilisateur {
 		panel.add(motDePasse2Label);
 		panel.add(identifiantField);
 		panel.add(motDePasse1Field);
-		panel.add(motDePasse2Field);		
+		panel.add(motDePasse2Field);
 		panel.add(bouton);
 		frame.add(panel);
 		frame.pack();
@@ -70,7 +96,14 @@ public class CreateurUtilisateur {
 	private void activer() {
 		// met en place les divers listeners
 		// . . . // A ECRIRE !!!
-		this.bouton.addActionListener(EventHandler.create(ActionListener.class, this, "sauverUtilisateur"));
+		//this.bouton.addActionListener(EventHandler.create(ActionListener.class, this, "sauverUtilisateur"));
+		// variante (lambda expression):
+		this.bouton.addActionListener(e -> sauverUtilisateur(this.getIdentifiant(), this.getPwd1()));
+
+		this.identifiantField.getDocument().addDocumentListener(this.docListener);
+		this.motDePasse1Field.getDocument().addDocumentListener(this.docListener);
+		this.motDePasse2Field.getDocument().addDocumentListener(this.docListener);
+
 		// on active ou desactive le bouton en fonction des règles spécifiées
 		verifBouton();
 	}
@@ -87,7 +120,8 @@ public class CreateurUtilisateur {
 		return this.motDePasse2Field.getText();
 	}
 
-	// si le identifiant n'est pas vide, et que les 2 pwd sont identiques et pas vides,
+	// si le identifiant n'est pas vide, et que les 2 pwd sont identiques et pas
+	// vides,
 	// alors on active le bouton
 	public void verifBouton() {
 		boolean active = !this.getIdentifiant().isEmpty() && !this.getPwd1().isEmpty()

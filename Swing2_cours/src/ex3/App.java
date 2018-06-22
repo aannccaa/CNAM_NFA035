@@ -29,31 +29,37 @@ public class App {
 	}
 
 	private void activer() {
-		choisirCouleurBouton.addActionListener(EventHandler.create(ActionListener.class, this, "choisirCouleur"));
-		droiteBouton.addActionListener(EventHandler.create(ActionListener.class, this, "droite"));
-		gaucheBouton.addActionListener(EventHandler.create(ActionListener.class, this, "gauche"));
-		hautBouton.addActionListener(EventHandler.create(ActionListener.class, this, "haut"));
-		basBouton.addActionListener(EventHandler.create(ActionListener.class, this, "bas"));
+		choisirCouleurBouton.addActionListener(e->choisirCouleur());
+		droiteBouton.addActionListener(e->droite());
+		gaucheBouton.addActionListener(e->gauche());
+		hautBouton.addActionListener(e->haut());
+		basBouton.addActionListener(e->bas());
+		
+//		choisirCouleurBouton.addActionListener(EventHandler.create(ActionListener.class, this, "choisirCouleur"));
+//		droiteBouton.addActionListener(EventHandler.create(ActionListener.class, this, "droite"));
+//		gaucheBouton.addActionListener(EventHandler.create(ActionListener.class, this, "gauche"));
+//		hautBouton.addActionListener(EventHandler.create(ActionListener.class, this, "haut"));
+//		basBouton.addActionListener(EventHandler.create(ActionListener.class, this, "bas"));
 	}
 	
-	private void choisirCouleur() {
+	public void choisirCouleur() {
 		Color newColor = JColorChooser.showDialog(frame, "Choisir la couleur du dessin", monObjet.getForeground());
 		monObjet.setCouleurCercle(newColor);
 	}
 	
-	private void droite() {
+	public void droite() {
 		monObjet.setCentreX(monObjet.getCentreX() + 10);
 	}
 	
-	private void gauche() {
+	public void gauche() {
 		monObjet.setCentreX(monObjet.getCentreX() - 10);
 	}
 	
-	private void bas() {
+	public void bas() {
 		monObjet.setCentreY(monObjet.getCentreY() + 10); // axe y valeurs croissantes vers le bas
 	}
 	
-	private void haut() {
+	public void haut() {
 		monObjet.setCentreY(monObjet.getCentreY() - 10); // axe y valeurs decroissantes vers le haut
 	}
 	

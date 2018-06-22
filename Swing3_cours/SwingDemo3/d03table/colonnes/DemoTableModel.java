@@ -14,55 +14,59 @@ import javax.swing.table.AbstractTableModel;
  */
 public class DemoTableModel extends AbstractTableModel {
 
-    Object[][] contenu;
+	Object[][] contenu;
+	int nbColonnes;
 
-    public DemoTableModel(int nbLignes) {
-        contenu = new Object[nbLignes][4];
-        for (int i = 0; i < nbLignes; i++) {
-            contenu[i][0] = 0;
-            contenu[i][1] = "du texte";
-            contenu[i][2] = false;
-        }
-    }
+	public DemoTableModel(int nbLignes) {
+		nbColonnes = 4;
+		contenu = new Object[nbLignes][nbColonnes];
+		for (int i = 0; i < nbLignes; i++) {
+			contenu[i][0] = 0;
+			contenu[i][1] = "du texte";
+			contenu[i][2] = false;
+			contenu[i][3] = Color.RED;
+		}
+	}
 
-    @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        Class<?>[] columnClasses = {
-            Integer.class, String.class, Boolean.class, Color.class
-        };
-        return columnClasses[columnIndex];
-    }
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		Class<?>[] columnClasses = { Integer.class, String.class, Boolean.class, Color.class };
+		return columnClasses[columnIndex];
+	}
 
-    @Override
-    public String getColumnName(int column) {
-        String[] titres = {"entier", "String", "Booléen"};
-        return titres[column];
-    }
+	@Override
+	public String getColumnName(int column) {
+		String[] titres = { "entier", "String", "Booléen", "Couleur" };
+		return titres[column];
+	}
 
-    @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
-    }
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return true;
+	}
 
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        contenu[rowIndex][columnIndex] = aValue;
-        fireTableCellUpdated(rowIndex, columnIndex);
-    }
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		this.contenu[rowIndex][columnIndex] = aValue;
 
-    @Override
-    public int getRowCount() {
-        return contenu.length;
-    }
+		// Notifies all listeners that the value of the cell at [row, column] has been
+		// updated.
+		fireTableCellUpdated(rowIndex, columnIndex);
+	}
 
-    @Override
-    public int getColumnCount() {
-        return 3;
-    }
+	@Override
+	public int getRowCount() {
+		return this.contenu.length;
+	}
 
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        return contenu[rowIndex][columnIndex];
-    }
+	@Override
+	public int getColumnCount() {
+		return this.nbColonnes;
+	}
+
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		return this.contenu[rowIndex][columnIndex];
+	}
 
 }
