@@ -40,9 +40,11 @@ public class InstallMachine {
 	}
 
 	// Q1
+	// vérifie qu’un logiciel (dont on connaît le nom et la version) est installé.
 	public boolean estInstalle(Logiciel l) {
 		// A COMPLETER
-		Logiciel trouve = installes.get(l.getNom());
+		String nomLogiciel = l.getNom();
+		Logiciel trouve = installes.get(nomLogiciel);
 		return (trouve != null && l.getVersion() == trouve.getVersion());
 	}
 
@@ -56,7 +58,6 @@ public class InstallMachine {
 			return l.getVersion() == trouve.getVersion();
 		}
 	}
-	
 
 	// Q2
 	public Set<Logiciel> depNonInstallees(Logiciel p) {
