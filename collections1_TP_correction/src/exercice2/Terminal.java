@@ -1,6 +1,7 @@
 package exercice2;
 
 import java.io.*;
+
 public class Terminal{    
     static BufferedReader in =
 	new BufferedReader(new InputStreamReader(System.in));

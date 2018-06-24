@@ -1,5 +1,6 @@
 package exercice2;
 
+
 /**
  * L'application du livre de recette.
  * Notez comment le main ne fait presque rien...
