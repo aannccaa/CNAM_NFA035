@@ -17,7 +17,7 @@ public class TestExo2 {
 		StringReader sr = new StringReader(input);
 		StringWriter sw = new StringWriter();
 		try {
-			exo2.ex2.copyUneSurDeuxLignes(sr, sw);
+			exo2.ex2.copierUneSurDeuxLignes(sr, sw);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +34,7 @@ public class TestExo2 {
 		StringReader sr = new StringReader(input);
 		StringWriter sw = new StringWriter();
 		try {
-			exo2.ex2.copyUneSurDeuxLignes(sr, sw);
+			exo2.ex2.copierUneSurDeuxLignes(sr, sw);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class TestExo2 {
 		StringReader sr = new StringReader(input);
 		StringWriter sw = new StringWriter();
 		try {
-			exo2.ex2.copyUneSurDeuxLignes(sr, sw);
+			exo2.ex2.copierUneSurDeuxLignes(sr, sw);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class TestExo2 {
 		StringReader sr = new StringReader(input);
 		StringWriter sw = new StringWriter();
 		try {
-			exo2.ex2.copyUneSurDeuxLignes(sr, sw);
+			exo2.ex2.copierUneSurDeuxLignes(sr, sw);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +85,7 @@ public class TestExo2 {
 		StringReader sr = new StringReader(input);
 		StringWriter sw = new StringWriter();
 		try {
-			exo2.ex2.copyUneSurDeuxLignes(sr, sw);
+			exo2.ex2.copierUneSurDeuxLignes(sr, sw);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,7 +102,7 @@ public class TestExo2 {
 		StringReader sr = new StringReader(input);
 		StringWriter sw = new StringWriter();
 		try {
-			exo2.ex2.copyUneSurDeuxLignes(sr, sw);
+			exo2.ex2.copierUneSurDeuxLignes(sr, sw);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

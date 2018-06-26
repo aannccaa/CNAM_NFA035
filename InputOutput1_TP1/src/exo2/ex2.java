@@ -32,7 +32,7 @@ Ecrivez un main qui appellera votre fonction avec des “vrais” fichiers.
  */
 
 public class ex2 {
-	public static void copyUneSurDeuxLignes(Reader r, Writer w) throws IOException {
+	public static void copierUneSurDeuxLignes(Reader r, Writer w) throws IOException {
 		boolean aCopier = true;
 		boolean premiereLigne = true;
 		while (true) {
@@ -79,7 +79,7 @@ public class ex2 {
 		try {
 			r = new FileReader("ex2.txt");
 			w = new FileWriter("ex2_lignesImpaires");
-			copyUneSurDeuxLignes(r, w);
+			copierUneSurDeuxLignes(r, w);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
